@@ -200,6 +200,6 @@ void BMP180::display(int iterations){
 	}
 }
 
-BMP180::~BMP180() {}
+//BMP180::~BMP180() {}
 
 } /* namespace exploringBB */

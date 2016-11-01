@@ -74,7 +74,9 @@ long combineValueslong(unsigned char msb, unsigned char lsb, unsigned char xlsb)
 int main(){
    int file;
    cout << "Starting the BMP180 sensor application" << endl;
+	
 	I2CDevice sensor(1,0x77);
+	
    if((file=open("/dev/i2c-1", O_RDWR)) < 0){
       cout << "failed to open the bus" << endl;
       return 1;

@@ -22,7 +22,6 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#include"I2CDevice.h"
 #include<iostream>
 #include<sstream>
 #include<fcntl.h>
@@ -32,7 +31,7 @@
 #include<sys/ioctl.h>
 #include<linux/i2c.h>
 #include<linux/i2c-dev.h>
- #ifndef I2C_H_
+#ifndef I2C_H_
 #define I2C_H_
 
 #define BBB_I2C_0 "/dev/i2c-0"

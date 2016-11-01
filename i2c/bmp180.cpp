@@ -58,7 +58,7 @@ using namespace exploringBB;
 //Variables
 #define P0   101325
 #define WAIT 13500
-unsigned char dataBuffer[BUFFER_SIZE];
+unsigned char *registers;
 
 // short is 16-bits in size on the BBB
 long combineValues(unsigned char msb, unsigned char lsb){
@@ -93,14 +93,9 @@ int main(){
    //Setting mode to 00001011=0x0B for +/-16g 13-bit
   // writeRegister(file, DATA_FORMAT, 0x00);
 	
-	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-	if(*this->registers!=0x55){
-		perror("ADXL345: Failure Condition - Sensor ID not Verified");
-		return -1;
-	}
-	
-   registers = sensor.readRegisters(BUFFER_SIZE,0x00);
-   cout << "The Device ID is: " << (*(registers+DEVID9) << endl;
+	registers = sensor.readRegisters(BUFFER_SIZE, 0x00);
+   	cout << "The Device ID is: " << (*(registers+DEVID9) << endl;
+					 
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;
    //cout << dec << endl;   //reset back to decimal

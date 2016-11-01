@@ -74,6 +74,7 @@ long combineValueslong(unsigned char msb, unsigned char lsb, unsigned char xlsb)
 int main(){
    int file;
    cout << "Starting the BMP180 sensor application" << endl;
+	I2CDevice sensor(1,0x77);
    if((file=open("/dev/i2c-1", O_RDWR)) < 0){
       cout << "failed to open the bus" << endl;
       return 1;
@@ -86,7 +87,7 @@ int main(){
    //Setting mode to 00000000=0x00 for +/-2g 10-bit
    //Setting mode to 00001011=0x0B for +/-16g 13-bit
   // writeRegister(file, DATA_FORMAT, 0x00);
-   readRegisters(file);
+   sensor.readRegisters(file);
    cout << "The Device ID is: " << HEX(dataBuffer[DEVID]) << endl;
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;

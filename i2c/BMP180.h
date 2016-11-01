@@ -40,7 +40,7 @@ namespace exploringBB {
 class BMP180:protected I2CDevice{
 
 public:
-
+	~BMP180();
 	/// An enumeration to define the oversampling of the sensor
 	enum OVERSAMPLING_SETTING {
 		OSS_0 			= 4500,// delay 4,5 ms

@@ -61,17 +61,6 @@ using namespace exploringBB;
 unsigned char *registers;
 unsigned char dataBuffer;
 
-// short is 16-bits in size on the BBB
-long combineValues(unsigned char msb, unsigned char lsb){
-   //shift the msb right by 8 bits and OR with lsb
-   return ((long)msb<<8)|(long)lsb;
-}
-
-// long is 32-bits in size on the BBB
-long combineValueslong(unsigned char msb, unsigned char lsb, unsigned char xlsb){
-   return ((long)msb<<16)|((long)lsb<<8)|((long)xlsb);
-}
-
 
 
 int main(){
@@ -81,21 +70,8 @@ int main(){
 	I2CDevice sensor(1,0x77);
 	sensor.open();
 	
-   if((file=open("/dev/i2c-1", O_RDWR)) < 0){
-      cout << "failed to open the bus" << endl;
-      return 1;
-   }
-   if(ioctl(file, I2C_SLAVE, 0x77) < 0){
-      cout << "Failed to connect to the sensor" << endl;
-      return 1;
-   }
-  // writeRegister(file, POWER_CTL, 0x08);
-   //Setting mode to 00000000=0x00 for +/-2g 10-bit
-   //Setting mode to 00001011=0x0B for +/-16g 13-bit
-  // writeRegister(file, DATA_FORMAT, 0x00);
-	
-	dataBuffer = sensor.readRegister(DEVID);
-   	cout << "The Device ID is: " << dataBuffer << endl;
+	dataBuffer[0x00] = sensor.readRegister(DEVID);
+   	cout << "The Device ID is: " << dataBuffer[0x00] << endl;
 					 
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;

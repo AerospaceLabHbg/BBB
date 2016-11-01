@@ -83,7 +83,7 @@ long BMP180::combineRegisters16(unsigned char msb, unsigned char lsb){
    return ((short)msb<<8)|(short)lsb;
 }
 
-long BMP180::combineRegisters24(unsigned char msb, unsigned char lsb){
+long BMP180::combineRegisters24(unsigned char msb, unsigned char lsb, unsigned char xlsb){
    //shift the MSB left by 8 bits and OR with LSB
    return ((short)msb<<16)|(short)lsb<<8|(short)xlsb;
 }

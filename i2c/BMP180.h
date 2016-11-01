@@ -27,7 +27,7 @@
 #include"I2CDevice.h"
 
 /// The BMP180 has 0x100 registers
-#define BUFFER_SIZE 0x100
+#define BUFFER_SIZE 0x40
 
 namespace exploringBB {
 

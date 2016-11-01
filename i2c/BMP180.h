@@ -48,19 +48,12 @@ public:
 		OSS_2	 		= 13500,//delay 13,5 ms
 		OSS_3	 		= 25500 //delay 25,5 ms
 	};
-	/// The resolution of the sensor. High is only available in +/- 16g range.
-	enum WRITEVALUES {
-		WT1 			= 0xF4,// Write Register
-		WT2	 		= 0x2E,//Write Temp
-		WT3	 		= 0x34,//Write pressure
-	};
 ;
 
 private:
 	unsigned int I2CBus, I2CAddress;
 	unsigned char *registers;
 	BMP180::OVERSAMPLING_SETTING oversampling_setting;
-	BMP180::WRITEVALUES writevalues;
 	short ac1, ac2, ac3, b1, b2, mb, mc, md; // raw 2's complement values
 	unsigned short ac4, ac5, ac6; // raw 2's complement values
 	long ut, up, x1, x2, b5, t, b6, x3, b3, p;

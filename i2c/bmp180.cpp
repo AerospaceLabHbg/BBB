@@ -59,6 +59,7 @@ using namespace exploringBB;
 #define P0   101325
 #define WAIT 13500
 unsigned char *registers;
+unsigned char dataBuffer;
 
 // short is 16-bits in size on the BBB
 long combineValues(unsigned char msb, unsigned char lsb){
@@ -94,7 +95,7 @@ int main(){
   // writeRegister(file, DATA_FORMAT, 0x00);
 	
 	registers = sensor.readRegisters(BUFFER_SIZE, 0x00);
-   	cout << "The Device ID is: " << (*(registers+DEVID9) << endl;
+   	cout << "The Device ID is: " << (*(registers+DEVID)) << endl;
 					 
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;

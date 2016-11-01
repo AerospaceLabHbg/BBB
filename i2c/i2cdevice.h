@@ -39,6 +39,7 @@ private:
 	unsigned int bus;
 	unsigned int device;
 	int file;
+	unsigned char *registers;
 public:
 	I2CDevice(unsigned int bus, unsigned int device);
 	virtual int open();

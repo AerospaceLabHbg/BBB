@@ -59,10 +59,9 @@ namespace exploringBB {
 #define MD1    0xBE
 #define MD2    0xBF
 // Data Registers
-#define WT1     0x2E
-#define WT2     0xF4
+#define WT2     0x2E
+#define WT1     0xF4
 #define WT3     0x34
-#define OSS     2
 #define MSB     0xF6
 #define LSB     0xF7
 #define XLSB    0xF8
@@ -70,7 +69,9 @@ namespace exploringBB {
 #define BUFFER_SIZE 256
 //Variables
 #define P0   101325
-#define WAIT 13500
+#define WAIT 4500
+#define OSS     0
+#define OSSWAIT 4500
 
 /**
  * Method to combine two 8-bit registers into a single short, which is 16-bits on the BBB. It shifts
@@ -119,7 +120,7 @@ void ADXL345::calculatePitchAndRoll(){
  * Method used to update the DATA_FORMAT register and any other registers that might be added
  * in the future.
  * @return 0 if the register is updated successfully
- */
+
 int BMP180::updateRegisters(){
    //update the DATA_FORMAT register
    char data_format = 0x00;  //+/- 2g with normal resolution
@@ -128,7 +129,7 @@ int BMP180::updateRegisters(){
    data_format = data_format|this->range; // 1st and 2nd LSB therefore no shift
    return this->writeRegister(DATA_FORMAT, data_format);
 }
-
+ */
 /**
  * The constructor for the ADXL345 accelerometer object. It passes the bus number and the
  * device address (with is 0x53 by default) to the constructor of I2CDevice. All of the states
@@ -136,20 +137,14 @@ int BMP180::updateRegisters(){
  * @param I2CBus The bus number that the ADXL345 device is on - typically 0 or 1
  * @param I2CAddress The address of the ADLX345 device (default 0x53, but can be altered)
  */
-ADXL345::ADXL345(unsigned int I2CBus, unsigned int I2CAddress):
+BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
 	I2CDevice(I2CBus, I2CAddress){   // this member initialisation list calls the parent constructor
 	this->I2CAddress = I2CAddress;
 	this->I2CBus = I2CBus;
-	this->accelerationX = 0;
-	this->accelerationY = 0;
-	this->accelerationZ = 0;
-	this->pitch = 0.0f;
-	this->roll = 0.0f;
+	this->ut = 0;
+	this->up = 0;
 	this->registers = NULL;
-	this->range = ADXL345::PLUSMINUS_16_G;
-	this->resolution = ADXL345::HIGH;
-	this->writeRegister(POWER_CTL, 0x08);
-	this->updateRegisters();
+	//this->updateRegisters();
 }
 
 /**
@@ -158,53 +153,54 @@ ADXL345::ADXL345(unsigned int I2CBus, unsigned int I2CAddress):
  * and pass them to the combineRegisters() method to be processed.
  * @return 0 if the registers are successfully read and -1 if the device ID is incorrect.
  */
-int ADXL345::readSensorState(){
+int BMP180::readSensorState(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-	if(*this->registers!=0xe5){
-		perror("ADXL345: Failure Condition - Sensor ID not Verified");
+	if(*this->registers!=0x55){
+		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}
-	this->accelerationX = this->combineRegisters(*(registers+DATAX1), *(registers+DATAX0));
-	this->accelerationY = this->combineRegisters(*(registers+DATAY1), *(registers+DATAY0));
-	this->accelerationZ = this->combineRegisters(*(registers+DATAZ1), *(registers+DATAZ0));
-	this->resolution = (ADXL345::RESOLUTION) (((*(registers+DATA_FORMAT))&0x08)>>3);
-	this->range = (ADXL345::RANGE) ((*(registers+DATA_FORMAT))&0x03);
-	this->calculatePitchAndRoll();
+	this->ac1 = this->combineRegisters16(*(registers+AC11), *(registers+AC12));
+	this->ac2 = this->combineRegisters16(*(registers+AC21), *(registers+AC22));
+	this->ac3 = this->combineRegisters16(*(registers+AC31), *(registers+AC32));
+	this->ac4 = this->combineRegisters16(*(registers+AC41), *(registers+AC42));
+	this->ac5 = this->combineRegisters16(*(registers+AC51), *(registers+AC52));
+	this->ac6 = this->combineRegisters16(*(registers+AC61), *(registers+AC62));
+	this->b1 = this->combineRegisters16(*(registers+B11), *(registers+B12));
+	this->b2 = this->combineRegisters16(*(registers+B21), *(registers+B22));
+	this->mb = this->combineRegisters16(*(registers+MB1), *(registers+MB2));
+	this->mc = this->combineRegisters16(*(registers+MC1), *(registers+MC2));
+	this->md = this->combineRegisters16(*(registers+MD1), *(registers+MD2));
+	
+	this->writeRegister(WT1, WT2)
+	usleep(WAIT);
+	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
+	this->ut = this->combineRegisters16(*(registers+MSB), *(registers+LSB));
+	
+	this->writeRegister(WT1, (WT3+(OSS<<6)))
+	usleep(OSSWAIT);
+	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
+	this->up = this->combineRegisters24(*(registers+MSB), *(registers+LSB),*(registers+XLSB));
 	return 0;
 }
 
-/**
- * Set the ADXL345 gravity range according to the RANGE enumeration
- * @param range One of the four possible gravity ranges defined by the RANGE enumeration
- */
-void ADXL345::setRange(ADXL345::RANGE range) {
-	this->range = range;
-	updateRegisters();
-}
-
-/**
- * Set the ADXL345 resolution according to the RESOLUTION enumeration
- * @param resolution either HIGH or NORMAL resolution. HIGH resolution is only available if the range is set to +/- 16g
- */
-void ADXL345::setResolution(ADXL345::RESOLUTION resolution) {
-	this->resolution = resolution;
-	updateRegisters();
-}
 
 /**
  * Useful debug method to display the pitch and roll values in degrees on a single standard output line
  * @param iterations The number of 0.1s iterations to take place.
  */
-void ADXL345::displayPitchAndRoll(int iterations){
+void ADXL345::display(int iterations){
 	int count = 0;
+	cout << "AC1:"<< this->ac1 << endl;
+	cout << "AC2:"<< this->ac2 << endl;
 	while(count < iterations){
-	      cout << "Pitch:"<< this->getPitch() << " Roll:" << this->getRoll() << "     \r"<<flush;
 	      usleep(100000);
 	      this->readSensorState();
+	cout << "ut:"<< this->ut << endl;
+	cout << "up:"<< this->up << endl;
 	      count++;
 	}
 }
 
-ADXL345::~ADXL345() {}
+BMP180::~BMP180() {}
 
 } /* namespace exploringBB */

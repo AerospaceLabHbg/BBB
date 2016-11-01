@@ -22,7 +22,7 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#include "ADXL345.h"
+#include "BMP180.h"
 #include <iostream>
 #include <unistd.h>
 #include <math.h>
@@ -33,36 +33,44 @@ using namespace std;
 namespace exploringBB {
 
 //From Table 19. of the ADXL345 Data sheet
-#define DEVID          0x00   //Device ID
-#define THRESH_TAP     0x1D   //Tap Threshold
-#define OFSX           0x1E   //X-axis Offset
-#define OFSY           0x1F   //Y-axis Offset
-#define OFSZ           0x20   //Z-axis Offset
-#define DUR            0x21   //Tap duration
-#define LATENT         0x22   //Tap latency
-#define WINDOW         0x23   //Tap window
-#define THRESH_ACT     0x24   //Activity threshold
-#define THRESH_INACT   0x25   //Threshold inactivity
-#define TIME_INACT     0x26   //Inactivity time
-#define ACT_INACT_CTL  0x27   //Axis enable control for activity and inactivity detection
-#define THRESH_FF      0x28   //Free-fall threshold
-#define TIME_FF        0x29   //Free-fall time
-#define TAP_AXES       0x2A   //Axis control for single tap/double tap
-#define ACT_TAP_STATUS 0x2B   //Source of single tap/double tap
-#define BW_RATE        0x2C   //Data rate and power mode control
-#define POWER_CTL      0x2D   //Power-saving features control
-#define INT_ENABLE     0x2E   //Interrupt enable control
-#define INT_MAP        0x2F   //Interrupt mapping control
-#define INT_SOURCE     0x30   //Source of interrupts
-#define DATA_FORMAT    0x31   //Data format control
-#define DATAX0         0x32   //X-axis Data 0
-#define DATAX1         0x33   //X-axis Data 1
-#define DATAY0         0x34   //Y-axis Data 0
-#define DATAY1         0x35   //Y-axis Data 1
-#define DATAZ0         0x36   //Z-axis Data 0
-#define DATAZ1         0x37   //Z-axis Data 1
-#define FIFO_CTL       0x38   //FIFO control
-#define FIFO_STATUS    0x39   //FIFO status
+// The BMP180 Registers required for this example
+#define DEVID  0xD0
+// Calibration Registers
+#define AC11   0xAA
+#define AC12   0xAB
+#define AC21   0xAC
+#define AC22   0xAD
+#define AC31   0xAE
+#define AC32   0xAF
+#define AC41   0xB0
+#define AC42   0xB1
+#define AC51   0xB2
+#define AC52   0xB3
+#define AC61   0xB4
+#define AC62   0xB5
+#define B11    0xB6
+#define B12    0xB7
+#define B21    0xB8
+#define B22    0xB9
+#define MB1    0xBA
+#define MB2    0xBB
+#define MC1    0xBC
+#define MC2    0xBD
+#define MD1    0xBE
+#define MD2    0xBF
+// Data Registers
+#define WT1     0x2E
+#define WT2     0xF4
+#define WT3     0x34
+#define OSS     2
+#define MSB     0xF6
+#define LSB     0xF7
+#define XLSB    0xF8
+//Buffer
+#define BUFFER_SIZE 256
+//Variables
+#define P0   101325
+#define WAIT 13500
 
 /**
  * Method to combine two 8-bit registers into a single short, which is 16-bits on the BBB. It shifts
@@ -70,16 +78,21 @@ namespace exploringBB {
  * @param msb an unsigned character that contains the most significant byte
  * @param lsb an unsigned character that contains the least significant byte
  */
-short ADXL345::combineRegisters(unsigned char msb, unsigned char lsb){
+long BMP180::combineRegisters16(unsigned char msb, unsigned char lsb){
    //shift the MSB left by 8 bits and OR with LSB
    return ((short)msb<<8)|(short)lsb;
+}
+
+long BMP180::combineRegisters24(unsigned char msb, unsigned char lsb){
+   //shift the MSB left by 8 bits and OR with LSB
+   return ((short)msb<<16)|(short)lsb<<8|(short)xlsb;
 }
 
 /**
  * Method to calculate the pitch and roll state values. This calculation takes account of the scaling
  * factors due to the resolution and gravity range to determine gravity weighted values that are used
  * to calculate the angular pitch and roll values in degrees.
- */
+
 void ADXL345::calculatePitchAndRoll(){
 	float gravity_range;
 	switch(ADXL345::range){
@@ -101,13 +114,13 @@ void ADXL345::calculatePitchAndRoll(){
 	this->pitch = 180 * atan(accXg/sqrt(accYSquared + accZSquared))/M_PI;
 	this->roll = 180 * atan(accYg/sqrt(accXSquared + accZSquared))/M_PI;
 }
-
+ */
 /**
  * Method used to update the DATA_FORMAT register and any other registers that might be added
  * in the future.
  * @return 0 if the register is updated successfully
  */
-int ADXL345::updateRegisters(){
+int BMP180::updateRegisters(){
    //update the DATA_FORMAT register
    char data_format = 0x00;  //+/- 2g with normal resolution
    //Full_resolution is the 3rd LSB

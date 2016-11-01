@@ -43,6 +43,7 @@ public:
 	I2CDevice(unsigned int bus, unsigned int device);
 	virtual int open();
 	virtual int write(unsigned char value);
+	virtual int readSensorState();
 	virtual unsigned char readRegister(unsigned int registerAddress);
 	virtual unsigned char* readRegisters(unsigned int number, unsigned int fromAddress=0);
 	virtual int writeRegister(unsigned int registerAddress, unsigned char value);

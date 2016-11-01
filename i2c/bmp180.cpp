@@ -89,7 +89,7 @@ int main(){
    //Setting mode to 00000000=0x00 for +/-2g 10-bit
    //Setting mode to 00001011=0x0B for +/-16g 13-bit
   // writeRegister(file, DATA_FORMAT, 0x00);
-   sensor.readRegisters(file);
+   sensor.readRegisters(BUFFER_SIZE,0x00);
    cout << "The Device ID is: " << HEX(dataBuffer[DEVID]) << endl;
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;
@@ -121,14 +121,14 @@ int main(){
 */
 int count=0;
 while(count <10){
- writeRegister(file,WT2,WT1);
+ sensor.writeRegister(WT2,WT1);
  usleep (WAIT);
- readRegisters(file);
+   sensor.readRegisters(BUFFER_SIZE,0x00);
     long ut = combineValues((dataBuffer[MSB]),(dataBuffer[LSB]));
 
- writeRegister(file,WT2,(WT3+(OSS<<6)));
+ sensor.writeRegister(WT2,(WT3+(OSS<<6)));
  usleep (WAIT);
- readRegisters(file);
+   sensor.readRegisters(BUFFER_SIZE,0x00);
     long up =  (combineValueslong(dataBuffer[MSB],dataBuffer[LSB],dataBuffer[XLSB]))>>(8-OSS);
 
 cout << dec << endl;

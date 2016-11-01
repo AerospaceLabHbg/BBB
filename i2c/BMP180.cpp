@@ -188,7 +188,7 @@ int BMP180::readSensorState(){
  * Useful debug method to display the pitch and roll values in degrees on a single standard output line
  * @param iterations The number of 0.1s iterations to take place.
  */
-void ADXL345::display(int iterations){
+void BMP180::display(int iterations){
 	int count = 0;
 	cout << "AC1:"<< this->ac1 << endl;
 	cout << "AC2:"<< this->ac2 << endl;

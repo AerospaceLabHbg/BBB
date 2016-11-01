@@ -85,6 +85,7 @@ int main(){
    cout << "Starting the BMP180 sensor application" << endl;
 	
 	I2CDevice sensor(1,0x77);
+	sensor.open();
 	
    if((file=open("/dev/i2c-1", O_RDWR)) < 0){
       cout << "failed to open the bus" << endl;

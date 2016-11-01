@@ -71,6 +71,15 @@ long combineValueslong(unsigned char msb, unsigned char lsb, unsigned char xlsb)
    return ((long)msb<<16)|((long)lsb<<8)|((long)xlsb);
 }
 
+int I2CDevice::readSensorState(){
+	this->file = this->readRegisters(BUFFER_SIZE, 0x00);
+	if(*this->file!=0x55){
+		perror("ADXL345: Failure Condition - Sensor ID not Verified");
+		return -1;
+	}
+	return 0;
+}
+
 int main(){
    int file;
    cout << "Starting the BMP180 sensor application" << endl;

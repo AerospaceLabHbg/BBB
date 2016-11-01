@@ -100,7 +100,7 @@ int main(){
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;
    //cout << dec << endl;   //reset back to decimal
-     
+  /*   
       short ac1 = combineValues((dataBuffer[AC11]),(dataBuffer[AC12]));
       short ac2 = combineValues((dataBuffer[AC21]),(dataBuffer[AC22]));
       short ac3 = combineValues((dataBuffer[AC31]),(dataBuffer[AC32]));
@@ -112,19 +112,7 @@ int main(){
       short mb = combineValues((dataBuffer[MB1]),(dataBuffer[MB2]));
       short mc = combineValues((dataBuffer[MC1]),(dataBuffer[MC2]));
       short md = combineValues((dataBuffer[MD1]),(dataBuffer[MD2]));
-/*
-      cout << "ac1="<<setbase(10)<<ac1<< endl  ;
-      cout << "ac2="<<setbase(10)<<ac2<< endl  ;
-      cout << "ac3="<<setbase(10)<<ac3<< endl  ;
-      cout << "ac4="<<setbase(10)<<ac4<< endl  ;
-      cout << "ac5="<<setbase(10)<<ac5<< endl  ;
-      cout << "ac6="<<setbase(10)<<ac6<< endl  ;
-      cout << "b1="<<setbase(10)<<b1<< endl  ;
-      cout << "b2="<<setbase(10)<<b2<< endl  ;
-      cout << "mb="<<setbase(10)<<mb<< endl  ;
-      cout << "mc="<<setbase(10)<<mc<< endl  ;
-      cout << "md="<<setbase(10)<<md<< endl  ;
-*/
+
 int count=0;
 while(count <10){
  sensor.writeRegister(WT2,WT1);
@@ -138,10 +126,7 @@ while(count <10){
     long up =  (combineValueslong(dataBuffer[MSB],dataBuffer[LSB],dataBuffer[XLSB]))>>(8-OSS);
 
 cout << dec << endl;
-/*
-      cout << "UT="<<ut<< endl  ;
-      cout << "UP="<<up<< endl  ;
-*/
+
 // Berechnung T
 long x1; 
 long x2;
@@ -192,7 +177,7 @@ h = 44330*(1-(pow(((float) p/P0),(1/5.255))));
 cout << "h=" <<h<<endl;
 count++;  
 }
-
+*/	
    // usleep(1000000);
      // readRegisters(file);  //read the sensor again
      // count++;

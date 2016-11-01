@@ -72,7 +72,7 @@ public:
 	virtual BMP180::RANGE getRange() { return this->range; }
 	virtual void setResolution(ADXL345::RESOLUTION resolution);
 	virtual BMP180::RESOLUTION getResolution() { return this->resolution; }*/
-	virtual void display ();
+	virtual void display(int iterations = 5);
 	virtual long getUT() { return ut; }
 	virtual long getUP() { return up; }
 	virtual long getT() { return t; }

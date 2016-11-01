@@ -170,12 +170,12 @@ int BMP180::readSensorState(){
 	this->mc = this->combineRegisters16(*(registers+MC1), *(registers+MC2));
 	this->md = this->combineRegisters16(*(registers+MD1), *(registers+MD2));
 	
-	this->writeRegister(WT1, WT2)
+	this->writeRegister(WT1, WT2);
 	usleep(WAIT);
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
 	this->ut = this->combineRegisters16(*(registers+MSB), *(registers+LSB));
 	
-	this->writeRegister(WT1, (WT3+(OSS<<6)))
+	this->writeRegister(WT1, (WT3+(OSS<<6)));
 	usleep(OSSWAIT);
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
 	this->up = this->combineRegisters24(*(registers+MSB), *(registers+LSB),*(registers+XLSB));

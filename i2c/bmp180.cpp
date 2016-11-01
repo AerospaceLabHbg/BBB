@@ -94,8 +94,8 @@ int main(){
    //Setting mode to 00001011=0x0B for +/-16g 13-bit
   // writeRegister(file, DATA_FORMAT, 0x00);
 	
-	registers = sensor.readRegisters(BUFFER_SIZE, 0x00);
-   	cout << "The Device ID is: " << (*(registers+DEVID)) << endl;
+	dataBuffer = sensor.readRegister(DEVID);
+   	cout << "The Device ID is: " << dataBuffer << endl;
 					 
    //cout << "The POWER_CTL mode is: " << HEX(dataBuffer[POWER_CTL]) << endl;
    //cout << "The DATA_FORMAT is: " << HEX(dataBuffer[DATA_FORMAT]) << endl;

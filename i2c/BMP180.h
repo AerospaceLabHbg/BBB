@@ -77,6 +77,7 @@ public:
 	virtual long getUP() { return up; }
 	virtual long getT() { return t; }
 	virtual long getP() { return p; }
+	virtual ~BMP180();
 
 };
 

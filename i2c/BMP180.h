@@ -22,12 +22,12 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#ifndef ADXL345_H_
-#define ADXL345_H_
+#ifndef BMP180_H_
+#define BMP180_H_
 #include"I2CDevice.h"
 
-/// The ADXL345 has 0x40 registers (0x01 to 0x1C are reserved and should not be accessed)
-#define BUFFER_SIZE 0x40
+/// The BMP180 has 0x100 registers
+#define BUFFER_SIZE 0x100
 
 namespace exploringBB {
 
@@ -37,54 +37,56 @@ namespace exploringBB {
  * Protected inheritance means that the public I2CDevice methods are not publicly accessible
  * by an object of the ADXL345 class.
  */
-class ADXL345:protected I2CDevice{
+class BMP180:protected I2CDevice{
 
 public:
 
-	/// An enumeration to define the gravity range of the sensor
-	enum RANGE {
-		PLUSMINUS_2_G 		= 0,//!< plus/minus 2g
-		PLUSMINUS_4_G 		= 1,//!< plus/minus 4g
-		PLUSMINUS_8_G 		= 2,//!< plus/minus 8g
-		PLUSMINUS_16_G 		= 3 //!< plus/minus 16g
+	/// An enumeration to define the oversampling of the sensor
+	enum OVERSAMPLING_SETTING {
+		OSS_0 			= 4500,// delay 4,5 ms
+		OSS_1	 		= 7500,//delay 7,5 ms
+		OSS_2	 		= 13500,//delay 13,5 ms
+		OSS_3	 		= 25500 //delay 25,5 ms
 	};
 	/// The resolution of the sensor. High is only available in +/- 16g range.
-	enum RESOLUTION {
-		NORMAL = 0,//!< NORMAL 10-bit resolution
-		HIGH = 1   //!< HIGH 13-bit resolution
+	enum WRITEVALUES {
+		WT1 			= 0xF4,// Write Register
+		WT2	 		= 0x2E,//Write Temp
+		WT3	 		= 0x34,//Write pressure
 	};
+;
 
 private:
 	unsigned int I2CBus, I2CAddress;
 	unsigned char *registers;
-	ADXL345::RANGE range;
-	ADXL345::RESOLUTION resolution;
-	short accelerationX, accelerationY, accelerationZ; // raw 2's complement values
-	float pitch, roll;                                 // in degrees
-	short combineRegisters(unsigned char msb, unsigned char lsb);
-	void calculatePitchAndRoll();
+	BMP180::OVERSAMPLING_SETTING oversampling_setting;
+	BMP180::WRITEVALUES writevalues;
+	short ac1, ac2, ac3, b1, b2, mb, mc, md; // raw 2's complement values
+	unsigned short ac4, ac5, ac6; // raw 2's complement values
+	long ut, up, x1, x2, b5, t, b6, x3, b3, p;
+	unsigned long b4, b7;
+	long combineRegisters16(unsigned char msb, unsigned char lsb);
+	long combineRegisters24(unsigned char msb, unsigned char lsb, unsigned char xlsb);
+	void calculateTemperature();
+	void calculatePressure();
 	virtual int updateRegisters();
 
 public:
-	ADXL345(unsigned int I2CBus, unsigned int I2CAddress=0x53);
+	BMP180(unsigned int I2CBus, unsigned int I2CAddress=0x77);
 	virtual int readSensorState();
 
-	virtual void setRange(ADXL345::RANGE range);
-	virtual ADXL345::RANGE getRange() { return this->range; }
+	/*virtual void setRange(ADXL345::RANGE range);
+	virtual BMP180::RANGE getRange() { return this->range; }
 	virtual void setResolution(ADXL345::RESOLUTION resolution);
-	virtual ADXL345::RESOLUTION getResolution() { return this->resolution; }
+	virtual BMP180::RESOLUTION getResolution() { return this->resolution; }*/
 
-	virtual short getAccelerationX() { return accelerationX; }
-	virtual short getAccelerationY() { return accelerationY; }
-	virtual short getAccelerationZ() { return accelerationZ; }
-	virtual float getPitch() { return pitch; }
-	virtual float getRoll() { return roll; }
+	virtual long getUT() { return ut; }
+	virtual long getUP() { return up; }
+	virtual long getT() { return t; }
+	virtual long getP() { return p; }
 
-	// Debugging method to display and update the pitch/roll on the one line
-	virtual void displayPitchAndRoll(int iterations = 600);
-	virtual ~ADXL345();
 };
 
 } /* namespace exploringBB */
 
-#endif /* ADXL345_H_ */
+#endif /* BMP180_H_ */

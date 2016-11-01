@@ -22,7 +22,7 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#include"I2CDevice.h"
+#include"i2cdevice.h"
 #include<iostream>
 #include<sstream>
 #include<fcntl.h>

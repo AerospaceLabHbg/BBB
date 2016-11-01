@@ -65,8 +65,7 @@ namespace exploringBB {
 #define MSB     0xF6
 #define LSB     0xF7
 #define XLSB    0xF8
-//Buffer
-#define BUFFER_SIZE 256
+
 //Variables
 #define P0   101325
 #define WAIT 4500

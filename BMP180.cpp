@@ -70,7 +70,7 @@ namespace exploringBB {
  * @param msb an unsigned character that contains the most significant byte
  * @param lsb an unsigned character that contains the least significant byte
  */
-short ADXL345::combineRegisters(unsigned char msb, unsigned char lsb){
+short BMP180::combineRegisters(unsigned char msb, unsigned char lsb){
    //shift the MSB left by 8 bits and OR with LSB
    return ((short)msb<<8)|(short)lsb;
 }
@@ -80,12 +80,12 @@ short ADXL345::combineRegisters(unsigned char msb, unsigned char lsb){
  * factors due to the resolution and gravity range to determine gravity weighted values that are used
  * to calculate the angular pitch and roll values in degrees.
  */
-void ADXL345::calculatePitchAndRoll(){
+void BMP180::calculatePitchAndRoll(){
 	float gravity_range;
-	switch(ADXL345::range){
-		case ADXL345::PLUSMINUS_16_G: gravity_range=32.0f; break;
-		case ADXL345::PLUSMINUS_8_G: gravity_range=16.0f; break;
-		case ADXL345::PLUSMINUS_4_G: gravity_range=8.0f; break;
+	switch(BMP180::range){
+		case BMP180::PLUSMINUS_16_G: gravity_range=32.0f; break;
+		case BMP180::PLUSMINUS_8_G: gravity_range=16.0f; break;
+		case BMP180::PLUSMINUS_4_G: gravity_range=8.0f; break;
 		default: gravity_range=4.0f; break;
 	}
     float resolution = 1024.0f;
@@ -107,7 +107,7 @@ void ADXL345::calculatePitchAndRoll(){
  * in the future.
  * @return 0 if the register is updated successfully
  */
-int ADXL345::updateRegisters(){
+int BMP180::updateRegisters(){
    //update the DATA_FORMAT register
    char data_format = 0x00;  //+/- 2g with normal resolution
    //Full_resolution is the 3rd LSB
@@ -123,7 +123,7 @@ int ADXL345::updateRegisters(){
  * @param I2CBus The bus number that the ADXL345 device is on - typically 0 or 1
  * @param I2CAddress The address of the ADLX345 device (default 0x53, but can be altered)
  */
-ADXL345::ADXL345(unsigned int I2CBus, unsigned int I2CAddress):
+BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
 	I2CDevice(I2CBus, I2CAddress){   // this member initialisation list calls the parent constructor
 	this->I2CAddress = I2CAddress;
 	this->I2CBus = I2CBus;
@@ -134,7 +134,7 @@ ADXL345::ADXL345(unsigned int I2CBus, unsigned int I2CAddress):
 	this->roll = 0.0f;
 	this->registers = NULL;
 	this->range = ADXL345::PLUSMINUS_16_G;
-	this->resolution = ADXL345::HIGH;
+	this->resolution = BMP180::HIGH;
 	this->writeRegister(POWER_CTL, 0x08);
 	this->updateRegisters();
 }
@@ -145,17 +145,17 @@ ADXL345::ADXL345(unsigned int I2CBus, unsigned int I2CAddress):
  * and pass them to the combineRegisters() method to be processed.
  * @return 0 if the registers are successfully read and -1 if the device ID is incorrect.
  */
-int ADXL345::readSensorState(){
+int BMP180::readSensorState(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
 	if(*this->registers!=0xe5){
-		perror("ADXL345: Failure Condition - Sensor ID not Verified");
+		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}
 	this->accelerationX = this->combineRegisters(*(registers+DATAX1), *(registers+DATAX0));
 	this->accelerationY = this->combineRegisters(*(registers+DATAY1), *(registers+DATAY0));
 	this->accelerationZ = this->combineRegisters(*(registers+DATAZ1), *(registers+DATAZ0));
-	this->resolution = (ADXL345::RESOLUTION) (((*(registers+DATA_FORMAT))&0x08)>>3);
-	this->range = (ADXL345::RANGE) ((*(registers+DATA_FORMAT))&0x03);
+	this->resolution = (BMP180::RESOLUTION) (((*(registers+DATA_FORMAT))&0x08)>>3);
+	this->range = (BMP180::RANGE) ((*(registers+DATA_FORMAT))&0x03);
 	this->calculatePitchAndRoll();
 	return 0;
 }
@@ -164,7 +164,7 @@ int ADXL345::readSensorState(){
  * Set the ADXL345 gravity range according to the RANGE enumeration
  * @param range One of the four possible gravity ranges defined by the RANGE enumeration
  */
-void ADXL345::setRange(ADXL345::RANGE range) {
+void BMP180::setRange(ADXL345::RANGE range) {
 	this->range = range;
 	updateRegisters();
 }
@@ -173,7 +173,7 @@ void ADXL345::setRange(ADXL345::RANGE range) {
  * Set the ADXL345 resolution according to the RESOLUTION enumeration
  * @param resolution either HIGH or NORMAL resolution. HIGH resolution is only available if the range is set to +/- 16g
  */
-void ADXL345::setResolution(ADXL345::RESOLUTION resolution) {
+void BMP180::setResolution(ADXL345::RESOLUTION resolution) {
 	this->resolution = resolution;
 	updateRegisters();
 }
@@ -182,7 +182,7 @@ void ADXL345::setResolution(ADXL345::RESOLUTION resolution) {
  * Useful debug method to display the pitch and roll values in degrees on a single standard output line
  * @param iterations The number of 0.1s iterations to take place.
  */
-void ADXL345::displayPitchAndRoll(int iterations){
+void BMP180::displayPitchAndRoll(int iterations){
 	int count = 0;
 	while(count < iterations){
 	      cout << "Pitch:"<< this->getPitch() << " Roll:" << this->getRoll() << "     \r"<<flush;
@@ -192,6 +192,6 @@ void ADXL345::displayPitchAndRoll(int iterations){
 	}
 }
 
-ADXL345::~ADXL345() {}
+BMP180::~BMP180() {}
 
 } /* namespace exploringBB */

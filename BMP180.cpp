@@ -89,7 +89,7 @@ void BMP180::calculatePitchAndRoll(){
 		default: gravity_range=4.0f; break;
 	}
     float resolution = 1024.0f;
-    if (this->resolution==ADXL345::HIGH) resolution = 8192.0f; //13-bit resolution
+    if (this->resolution==BMP180::HIGH) resolution = 8192.0f; //13-bit resolution
     float factor = gravity_range/resolution;
 
     float accXg = this->accelerationX * factor;
@@ -164,7 +164,7 @@ int BMP180::readSensorState(){
  * Set the ADXL345 gravity range according to the RANGE enumeration
  * @param range One of the four possible gravity ranges defined by the RANGE enumeration
  */
-void BMP180::setRange(ADXL345::RANGE range) {
+void BMP180::setRange(BMP180::RANGE range) {
 	this->range = range;
 	updateRegisters();
 }
@@ -173,7 +173,7 @@ void BMP180::setRange(ADXL345::RANGE range) {
  * Set the ADXL345 resolution according to the RESOLUTION enumeration
  * @param resolution either HIGH or NORMAL resolution. HIGH resolution is only available if the range is set to +/- 16g
  */
-void BMP180::setResolution(ADXL345::RESOLUTION resolution) {
+void BMP180::setResolution(BMP180::RESOLUTION resolution) {
 	this->resolution = resolution;
 	updateRegisters();
 }

@@ -22,8 +22,8 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#ifndef ADXL345_H_
-#define ADXL345_H_
+#ifndef BMP180_H_
+#define BMP180_H_
 #include"I2CDevice.h"
 
 /// The ADXL345 has 0x40 registers (0x01 to 0x1C are reserved and should not be accessed)
@@ -37,7 +37,7 @@ namespace exploringBB {
  * Protected inheritance means that the public I2CDevice methods are not publicly accessible
  * by an object of the ADXL345 class.
  */
-class ADXL345:protected I2CDevice{
+class BMP180:protected I2CDevice{
 
 public:
 
@@ -57,8 +57,8 @@ public:
 private:
 	unsigned int I2CBus, I2CAddress;
 	unsigned char *registers;
-	ADXL345::RANGE range;
-	ADXL345::RESOLUTION resolution;
+	BMP180::RANGE range;
+	BMP180::RESOLUTION resolution;
 	short accelerationX, accelerationY, accelerationZ; // raw 2's complement values
 	float pitch, roll;                                 // in degrees
 	short combineRegisters(unsigned char msb, unsigned char lsb);
@@ -66,13 +66,13 @@ private:
 	virtual int updateRegisters();
 
 public:
-	ADXL345(unsigned int I2CBus, unsigned int I2CAddress=0x53);
+	BMP180(unsigned int I2CBus, unsigned int I2CAddress=0x53);
 	virtual int readSensorState();
 
 	virtual void setRange(ADXL345::RANGE range);
-	virtual ADXL345::RANGE getRange() { return this->range; }
+	virtual BMP180::RANGE getRange() { return this->range; }
 	virtual void setResolution(ADXL345::RESOLUTION resolution);
-	virtual ADXL345::RESOLUTION getResolution() { return this->resolution; }
+	virtual BMP180::RESOLUTION getResolution() { return this->resolution; }
 
 	virtual short getAccelerationX() { return accelerationX; }
 	virtual short getAccelerationY() { return accelerationY; }
@@ -82,9 +82,9 @@ public:
 
 	// Debugging method to display and update the pitch/roll on the one line
 	virtual void displayPitchAndRoll(int iterations = 600);
-	virtual ~ADXL345();
+	virtual ~BMP180();
 };
 
 } /* namespace exploringBB */
 
-#endif /* ADXL345_H_ */
+#endif /* BMP180_H_ */

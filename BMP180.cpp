@@ -109,7 +109,7 @@ void BMP180::calculatePitchAndRoll(){
  * in the future.
  * @return 0 if the register is updated successfully
  */
-/*	
+	
 int BMP180::updateRegisters(){
    //update the DATA_FORMAT register
    char data_format = 0x00;  //+/- 2g with normal resolution
@@ -118,7 +118,7 @@ int BMP180::updateRegisters(){
    data_format = data_format|this->range; // 1st and 2nd LSB therefore no shift
    return this->writeRegister(DATA_FORMAT, data_format);
 }
-*/
+
 /**
  * The constructor for the ADXL345 accelerometer object. It passes the bus number and the
  * device address (with is 0x53 by default) to the constructor of I2CDevice. All of the states

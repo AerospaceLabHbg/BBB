@@ -22,7 +22,7 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#include "ADXL345.h"
+#include "BMP180.h"
 #include <iostream>
 #include <unistd.h>
 #include <math.h>

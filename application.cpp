@@ -32,9 +32,9 @@ using namespace exploringBB;
 
 int main() {
 
-	ADXL345 sensor(1,0x53);
-	sensor.setResolution(ADXL345::NORMAL);
-	sensor.setRange(ADXL345::PLUSMINUS_4_G);
+	BMP180 sensor(1,0x53);
+	sensor.setResolution(BMP180::NORMAL);
+	sensor.setRange(BMP180::PLUSMINUS_4_G);
 //	sensor.readSensorState();
         sensor.displayPitchAndRoll();
 	return 0;

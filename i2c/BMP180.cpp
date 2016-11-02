@@ -32,7 +32,6 @@ using namespace std;
 
 namespace exploringBB {
 
-//From Table 19. of the ADXL345 Data sheet
 // The BMP180 Registers required for this example
 #define DEVID  0xD0
 // Calibration Registers

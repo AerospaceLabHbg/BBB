@@ -23,7 +23,7 @@
  */
 
 #include <iostream>
-#include "ADXL345.h"
+#include "BMP180.h"
 #include <unistd.h>
 #include <pthread.h>
 

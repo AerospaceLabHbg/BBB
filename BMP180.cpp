@@ -133,7 +133,7 @@ BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
 	this->pitch = 0.0f;
 	this->roll = 0.0f;
 	this->registers = NULL;
-	this->range = ADXL345::PLUSMINUS_16_G;
+	this->range = BMP180::PLUSMINUS_16_G;
 	this->resolution = BMP180::HIGH;
 	this->writeRegister(POWER_CTL, 0x08);
 	this->updateRegisters();

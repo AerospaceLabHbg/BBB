@@ -47,7 +47,7 @@ public:
 		OSS_2	 		= 13500,//delay 13,5 ms
 		OSS_3	 		= 25500 //delay 25,5 ms
 	};
-;
+
 
 private:
 	unsigned int I2CBus, I2CAddress;

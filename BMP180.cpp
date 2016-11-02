@@ -109,15 +109,6 @@ void BMP180::calculatePitchAndRoll(){
  * in the future.
  * @return 0 if the register is updated successfully
  */
-	
-int BMP180::updateRegisters(){
-   //update the DATA_FORMAT register
-   char data_format = 0x00;  //+/- 2g with normal resolution
-   //Full_resolution is the 3rd LSB
-   data_format = data_format|((this->resolution)<<3);
-   data_format = data_format|this->range; // 1st and 2nd LSB therefore no shift
-   return this->writeRegister(DATA_FORMAT, data_format);
-}
 
 /**
  * The constructor for the ADXL345 accelerometer object. It passes the bus number and the
@@ -139,7 +130,6 @@ BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
 	this->range = BMP180::PLUSMINUS_16_G;
 	this->resolution = BMP180::HIGH;
 	this->writeRegister(POWER_CTL, 0x08);
-	this->updateRegisters();
 }
 
 /**

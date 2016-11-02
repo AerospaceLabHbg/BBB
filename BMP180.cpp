@@ -69,7 +69,8 @@ namespace exploringBB {
  * the MSB 8-bits to the left and then ORs the result with the LSB.
  * @param msb an unsigned character that contains the most significant byte
  * @param lsb an unsigned character that contains the least significant byte
- */
+ 
+	
 short BMP180::combineRegisters(unsigned char msb, unsigned char lsb){
    //shift the MSB left by 8 bits and OR with LSB
    return ((short)msb<<8)|(short)lsb;
@@ -80,6 +81,7 @@ short BMP180::combineRegisters(unsigned char msb, unsigned char lsb){
  * factors due to the resolution and gravity range to determine gravity weighted values that are used
  * to calculate the angular pitch and roll values in degrees.
  */
+/*	
 void BMP180::calculatePitchAndRoll(){
 	float gravity_range;
 	switch(BMP180::range){
@@ -101,12 +103,13 @@ void BMP180::calculatePitchAndRoll(){
 	this->pitch = 180 * atan(accXg/sqrt(accYSquared + accZSquared))/M_PI;
 	this->roll = 180 * atan(accYg/sqrt(accXSquared + accZSquared))/M_PI;
 }
-
+*/
 /**
  * Method used to update the DATA_FORMAT register and any other registers that might be added
  * in the future.
  * @return 0 if the register is updated successfully
  */
+/*	
 int BMP180::updateRegisters(){
    //update the DATA_FORMAT register
    char data_format = 0x00;  //+/- 2g with normal resolution
@@ -115,7 +118,7 @@ int BMP180::updateRegisters(){
    data_format = data_format|this->range; // 1st and 2nd LSB therefore no shift
    return this->writeRegister(DATA_FORMAT, data_format);
 }
-
+*/
 /**
  * The constructor for the ADXL345 accelerometer object. It passes the bus number and the
  * device address (with is 0x53 by default) to the constructor of I2CDevice. All of the states
@@ -145,7 +148,8 @@ BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
  * and pass them to the combineRegisters() method to be processed.
  * @return 0 if the registers are successfully read and -1 if the device ID is incorrect.
  */
-int BMP180::readSensorState(){
+/*
+	int BMP180::readSensorState(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
 	if(*this->registers!=0xe5){
 		perror("BMP180: Failure Condition - Sensor ID not Verified");
@@ -159,11 +163,12 @@ int BMP180::readSensorState(){
 	this->calculatePitchAndRoll();
 	return 0;
 }
-
+*/
 /**
  * Set the ADXL345 gravity range according to the RANGE enumeration
  * @param range One of the four possible gravity ranges defined by the RANGE enumeration
- */
+ 
+	
 void BMP180::setRange(BMP180::RANGE range) {
 	this->range = range;
 	updateRegisters();
@@ -172,7 +177,7 @@ void BMP180::setRange(BMP180::RANGE range) {
 /**
  * Set the ADXL345 resolution according to the RESOLUTION enumeration
  * @param resolution either HIGH or NORMAL resolution. HIGH resolution is only available if the range is set to +/- 16g
- */
+
 void BMP180::setResolution(BMP180::RESOLUTION resolution) {
 	this->resolution = resolution;
 	updateRegisters();
@@ -181,7 +186,7 @@ void BMP180::setResolution(BMP180::RESOLUTION resolution) {
 /**
  * Useful debug method to display the pitch and roll values in degrees on a single standard output line
  * @param iterations The number of 0.1s iterations to take place.
- */
+
 void BMP180::displayPitchAndRoll(int iterations){
 	int count = 0;
 	while(count < iterations){
@@ -191,7 +196,7 @@ void BMP180::displayPitchAndRoll(int iterations){
 	      count++;
 	}
 }
-
+ */
 BMP180::~BMP180() {}
 
 } /* namespace exploringBB */

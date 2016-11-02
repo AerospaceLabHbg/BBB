@@ -37,7 +37,7 @@ namespace exploringBB {
  * Protected inheritance means that the public I2CDevice methods are not publicly accessible
  * by an object of the ADXL345 class.
  */
-class BMP180:protected I2CDevice{
+class BMP180: I2CDevice{
 
 public:
 	/// An enumeration to define the oversampling of the sensor

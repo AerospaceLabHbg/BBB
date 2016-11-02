@@ -69,9 +69,9 @@ public:
 	BMP180(unsigned int I2CBus, unsigned int I2CAddress=0x53);
 	virtual int readSensorState();
 
-	virtual void setRange(ADXL345::RANGE range);
+	virtual void setRange(BMP180::RANGE range);
 	virtual BMP180::RANGE getRange() { return this->range; }
-	virtual void setResolution(ADXL345::RESOLUTION resolution);
+	virtual void setResolution(BMP180::RESOLUTION resolution);
 	virtual BMP180::RESOLUTION getResolution() { return this->resolution; }
 
 	virtual short getAccelerationX() { return accelerationX; }

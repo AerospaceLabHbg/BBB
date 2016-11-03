@@ -27,6 +27,14 @@ long BMP180::combineRegisters24(unsigned char msb, unsigned char lsb, unsigned c
    return ((short)msb<<16)|(short)lsb<<8|(short)xlsb;
 }
 
+int BMP180::updateRegisters(){
+   //update the DATA_FORMAT register
+   char data_format = 0x00;  //+/- 2g with normal resolution
+   //Full_resolution is the 3rd LSB
+   data_format = data_format|((this->resolution)<<3);
+   data_format = data_format|this->range; // 1st and 2nd LSB therefore no shift
+   return this->writeRegister(DATA_FORMAT, data_format);
+}
 /*
  * The constructor for the BMP180 object. It passes the bus number and the
  * device address (with is 0x53 by default) to the constructor of I2CDevice. All of the states

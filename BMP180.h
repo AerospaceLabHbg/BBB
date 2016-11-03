@@ -16,7 +16,7 @@ private:
 	short ac1, ac2 ,ac3;
 	long combineRegisters16(unsigned char msb, unsigned char lsb);
 	long combineRegisters24(unsigned char msb, unsigned char lsb, unsigned char xlsb);
-	long ut,up,p,t;
+	long ut,up,pressure,temperature;
 	virtual int updateRegisters();
 
 public:

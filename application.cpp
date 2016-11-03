@@ -37,7 +37,7 @@ int main() {
 	sensor.displayCalibrationData();
 	
 	int i = 0;
-		while(i<10){
+		while(i<1000){
 	sensor.readTemperature();
 	sensor.readPressure();
 	sensor.displayResults();

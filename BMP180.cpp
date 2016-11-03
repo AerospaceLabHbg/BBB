@@ -28,12 +28,8 @@ long BMP180::combineRegisters24(unsigned char msb, unsigned char lsb, unsigned c
 }
 
 int BMP180::updateRegisters(){
-   //update the DATA_FORMAT register
-   char data_format = 0x00;  //+/- 2g with normal resolution
-   //Full_resolution is the 3rd LSB
-   data_format = data_format|((this->resolution)<<3);
-   data_format = data_format|this->range; // 1st and 2nd LSB therefore no shift
-   return this->writeRegister(DATA_FORMAT, data_format);
+
+   return 0;
 }
 /*
  * The constructor for the BMP180 object. It passes the bus number and the

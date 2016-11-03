@@ -35,8 +35,12 @@ int main() {
 	BMP180 sensor(1,0x77);
 	sensor.readSensorState();
 	sensor.displayCalibrationData();
+	
+	int i = 0
+		while(i<10){
 	sensor.readTemperature();
 	sensor.readPressure();
 	sensor.displayResults();
+	i++	}
 	return 0;
 }

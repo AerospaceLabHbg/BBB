@@ -74,7 +74,7 @@ BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
  */
 int BMP180::readSensorState(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-	if(*this->(registers+DEVID)!=0x55){
+	if(readRegister(DEVID)!=0x55){
 		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}

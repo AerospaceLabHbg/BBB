@@ -90,7 +90,7 @@ int BMP180::readSensorState(){
 }
 
 void BMP180::displayCalibrationData(){
-	cout << "AC1:"<< HEX(this->getAC1()) << "AC2:" << HEX(this->getAC2()) << endl;
+	cout << "AC1:"<< ac1 << "AC2:" << (this->getAC2()) << endl;
 
 }
 	

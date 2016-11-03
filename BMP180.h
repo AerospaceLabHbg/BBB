@@ -17,7 +17,6 @@ private:
 	long combineRegisters16(unsigned char msb, unsigned char lsb);
 	long combineRegisters24(unsigned char msb, unsigned char lsb, unsigned char xlsb);
 	long ut,up,pressure,temperature;
-	//virtual int updateRegisters();
 
 public:
 	BMP180(unsigned int I2CBus, unsigned int I2CAddress=0x53);

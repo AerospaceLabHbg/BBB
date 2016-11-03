@@ -10,7 +10,8 @@ using namespace std;
 namespace exploringBB {
 
 
-#define	DEVIDBMP		0xD0   //Device ID
+#define	DEVIDREGBMP	0xD0   //Device ID Register
+#define DEVIDBMP	0x55   //Device ID
 #define SOFTRESET	0xE0   //Output control register
 	
 //Calibration registers 16bit MSB first
@@ -77,7 +78,7 @@ BMP180::BMP180(unsigned int I2CBus, unsigned int I2CAddress):
  */
 int BMP180::readSensorState(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-	if(readRegister(DEVIDBMP)!=0x55){
+	if(readRegister(DEVIDREGBMP)!=DEVIDBMP){
 		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}

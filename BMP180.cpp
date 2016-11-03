@@ -40,6 +40,8 @@ namespace exploringBB {
 #define OUTTemp		0x2E
 #define OUTPres		0x34
 #define OSS		0
+
+#define HEX(x) setw(2) << setfill('0') << hex << (int)(x)
 	
 long BMP180::combineRegisters16(unsigned char msb, unsigned char lsb){
    //shift the MSB left by 8 bits and OR with LSB
@@ -88,7 +90,7 @@ int BMP180::readSensorState(){
 }
 
 void BMP180::displayCalibrationData(){
-	cout << "AC1:"<< this->getAC1() << "AC2:" << this->getAC2() << endl;
+	cout << "AC1:"<< HEX(this->getAC1()) << "AC2:" << HEX(this->getAC2()) << endl;
 
 }
 	

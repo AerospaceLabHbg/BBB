@@ -34,5 +34,6 @@ int main() {
 
 	BMP180 sensor(1,0x77);
 	sensor.readSensorState();
+	sensor.displayCalibrationData();
 	return 0;
 }

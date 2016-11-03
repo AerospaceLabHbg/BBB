@@ -116,14 +116,14 @@ void BMP180::displayCalibrationData(){
 void BMP180::readTemperature(){
 this->writeRegister(CONREG, OUTTEMP);
 usleep(WAITT);
-this->registers = this->readRegisters(2, MSB);
+this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
 this->ut = this->combineRegisters16(*(registers+MSB), *(registers+LSB));
 }
 	
 void BMP180::readPressure(){
 this->writeRegister(CONREG, (OUTPRES+(OSS<<6)));
 usleep(WAITP);
-this->registers = this->readRegisters(3, MSB);
+this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
 this->up = this->combineRegisters24(*(registers+MSB), *(registers+LSB), *(registers+XLSB));
 up = up >>(8-OSS);
 }

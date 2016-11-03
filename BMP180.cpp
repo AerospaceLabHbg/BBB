@@ -87,6 +87,13 @@ int BMP180::readSensorState(){
 	this->ac4 = this->combineRegisters16(*(registers+AC41), *(registers+AC42));
 	this->ac5 = this->combineRegisters16(*(registers+AC51), *(registers+AC52));
 	this->ac6 = this->combineRegisters16(*(registers+AC61), *(registers+AC62));
+	
+	this->b1 = this->combineRegisters16(*(registers+B11), *(registers+B12));
+	this->b2 = this->combineRegisters16(*(registers+B21), *(registers+B22));
+	
+	this->mb = this->combineRegisters16(*(registers+MB1), *(registers+MB2));
+	this->mc = this->combineRegisters16(*(registers+MC1), *(registers+MC2));
+	this->md = this->combineRegisters16(*(registers+MD1), *(registers+MD2));
 	return 0;
 }
 

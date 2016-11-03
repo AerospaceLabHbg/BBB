@@ -12,7 +12,11 @@ namespace exploringBB {
 #define	DEVID		0x00   //Device ID
 #define DATA_FORMAT	0x31   //Data format control
 #define OUTREG		0xF4   //Output control register
-	
+
+#define AC11		0xAA
+#define AC12		0xAB
+
+
 long BMP180::combineRegisters16(unsigned char msb, unsigned char lsb){
    //shift the MSB left by 8 bits and OR with LSB
    return ((short)msb<<8)|(short)lsb;

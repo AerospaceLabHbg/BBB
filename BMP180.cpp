@@ -9,7 +9,7 @@ using namespace std;
 namespace exploringBB {
 
 
-#define	DEVID		0x00   //Device ID
+#define	DEVID		0xD0   //Device ID
 #define SOFTRESET	0xE0   //Output control register
 	
 //Calibration registers 16bit MSB first

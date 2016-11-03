@@ -25,11 +25,6 @@ public:
 	BMP180(unsigned int I2CBus, unsigned int I2CAddress=0x53);
 	virtual int readSensorState();
 	virtual void displayCalibrationData();
-	virtual long getUT() { return ut; }
-	virtual long getUP() { return up; }
-	virtual long getTemperature() { return temperature; }
-	virtual char getAC1() { return ac1; }
-	virtual char getAC2() { return ac2; }
 	virtual ~BMP180();
 };
 

@@ -26,12 +26,7 @@ long BMP180::combineRegisters24(unsigned char msb, unsigned char lsb, unsigned c
    //shift the MSB left by 16 bits and shifts the LSB left by 8 bits and OR with XLSB
    return ((short)msb<<16)|(short)lsb<<8|(short)xlsb;
 }
-/*
-int BMP180::updateRegisters(){
 
-   return 0;
-}
-*/
 /*
  * The constructor for the BMP180 object. It passes the bus number and the
  * device address (with is 0x53 by default) to the constructor of I2CDevice. All of the states

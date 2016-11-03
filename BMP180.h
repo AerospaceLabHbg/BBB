@@ -13,6 +13,7 @@ class BMP180:protected I2CDevice{
 private:
 	unsigned int I2CBus, I2CAddress; //initialiserung für BMP180(I2CBus,I2CAddress)
 	unsigned char *registers;
+	short ac1, ac2 ,ac3;
 	long combineRegisters16(unsigned char msb, unsigned char lsb);
 	long combineRegisters24(unsigned char msb, unsigned char lsb, unsigned char xlsb);
 	long ut,up,p,t;

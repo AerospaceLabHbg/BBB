@@ -32,10 +32,7 @@ using namespace exploringBB;
 
 int main() {
 
-	BMP180 sensor(1,0x53);
-	sensor.setResolution(BMP180::NORMAL);
-	sensor.setRange(BMP180::PLUSMINUS_4_G);
-//	sensor.readSensorState();
-        sensor.displayPitchAndRoll();
+	BMP180 sensor(1,0x77);
+	sensor.readSensorState();
 	return 0;
 }

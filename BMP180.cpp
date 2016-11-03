@@ -39,9 +39,14 @@ namespace exploringBB {
 #define MD2		0xBF
 //Output Manipulation
 #define CONREG		0xF4
-#define OUTTemp		0x2E
-#define OUTPres		0x34
+#define OUTTEMP		0x2E
+#define OUTPRES		0x34
 #define OSS		0
+#define WAITP		4500
+#define WAITT		4500
+#define MSB		0xF6
+#define LSB		0xF7
+#define XLSB		0xF8
 
 #define HEX(x) setw(2) << setfill('0') << hex << (int)(x)
 	
@@ -106,6 +111,25 @@ void BMP180::displayCalibrationData(){
 	cout << "MB:"<< mb << "   MC:" << mc << endl;
 	cout << "MD:"<< md << endl;
 
+}
+	
+void readTemperature(){
+writeRegister(CONREG, OUTTEMP);
+usleep(WAITT);
+readRegisters(2, MSB);
+this->ut = this->combineRegisters16(*(registers+MSB), *(registers+LSB));
+}
+	
+void readPressure(){
+writeRegister(CONREG, (OUTPRES+(OSS<<6)));
+usleep(WAITP);
+readRegisters(3, MSB);
+this->up = this->combineRegisters24(*(registers+MSB), *(registers+LSB), *(registers+XLSB));
+up = up >>(8-OSS)
+}
+
+void displayResults(){
+cout << "ut:"<< ut << "   up:" << up << endl;		
 }
 	
 BMP180::~BMP180() {}

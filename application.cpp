@@ -36,11 +36,11 @@ int main() {
 	sensor.readSensorState();
 	sensor.displayCalibrationData();
 	
-	int i = 0
+	int i = 0;
 		while(i<10){
 	sensor.readTemperature();
 	sensor.readPressure();
 	sensor.displayResults();
-	i++	}
+	i++;	}
 	return 0;
 }

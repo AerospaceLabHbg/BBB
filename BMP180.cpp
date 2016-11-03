@@ -125,7 +125,7 @@ this->writeRegister(CONREG, (OUTPRES+(OSS<<6)));
 usleep(WAITP);
 this->registers = this->readRegisters(3, MSB);
 this->up = this->combineRegisters24(*(registers+MSB), *(registers+LSB), *(registers+XLSB));
-up = up >>(8-OSS)
+up = up >>(8-OSS);
 }
 
 void BMP180::displayResults(){

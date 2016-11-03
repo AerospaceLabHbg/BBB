@@ -113,22 +113,22 @@ void BMP180::displayCalibrationData(){
 
 }
 	
-void readTemperature(){
-writeRegister(CONREG, OUTTEMP);
+void BMP180::readTemperature(){
+this->writeRegister(CONREG, OUTTEMP);
 usleep(WAITT);
-readRegisters(2, MSB);
+this->registers = this->readRegisters(2, MSB);
 this->ut = this->combineRegisters16(*(registers+MSB), *(registers+LSB));
 }
 	
-void readPressure(){
-writeRegister(CONREG, (OUTPRES+(OSS<<6)));
+void BMP180::readPressure(){
+this->writeRegister(CONREG, (OUTPRES+(OSS<<6)));
 usleep(WAITP);
-readRegisters(3, MSB);
+this->registers = this->readRegisters(3, MSB);
 this->up = this->combineRegisters24(*(registers+MSB), *(registers+LSB), *(registers+XLSB));
 up = up >>(8-OSS)
 }
 
-void displayResults(){
+void BMP180::displayResults(){
 cout << "ut:"<< ut << "   up:" << up << endl;		
 }
 	

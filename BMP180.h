@@ -4,7 +4,7 @@
 #include"I2CDevice.h"
 
 /// An i2c Device has 0x100 registers
-#define BUFFER_SIZE 0x100
+// #define BUFFER_SIZE 0x100
 
 namespace exploringBB {
 

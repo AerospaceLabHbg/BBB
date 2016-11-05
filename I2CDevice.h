@@ -28,6 +28,9 @@
 #define BBB_I2C_0 "/dev/i2c-0"
 #define BBB_I2C_1 "/dev/i2c-1"
 
+/// An i2c Device has 0x100 registers
+#define BUFFER_SIZE 0x100
+
 namespace exploringBB {
 
 /**

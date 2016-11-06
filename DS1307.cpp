@@ -2,7 +2,7 @@
 #include "DS1307.h"
 #include <iostream>
 #include <sstream>
-#include <string>
+#include <string.h>
 #include <unistd.h>
 #include <math.h>
 #include <time.h>
@@ -43,7 +43,7 @@ int Hex2Dec(int value){
 	ostringstream os;
 	os<<dec<<value;
 	int i_dec = stoi(os,&sz);
-	return i_dec);
+	return (i_dec);
 }
 
 

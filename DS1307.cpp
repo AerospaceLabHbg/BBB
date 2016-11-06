@@ -29,7 +29,7 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-unsigned char Dec2Hex(int value){
+char* Dec2Hex(int value){
 	char temp1[257];
 	ostringstream os;
 	os<<hex<<value;
@@ -38,7 +38,7 @@ unsigned char Dec2Hex(int value){
 }
 
 	
-unsigned char Hex2Dec(int value){
+char* Hex2Dec(int value){
 	char temp2[257];
 	ostringstream os;
 	os<<dec<<value;

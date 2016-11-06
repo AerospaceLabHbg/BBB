@@ -41,7 +41,7 @@ DS1307::DS1307(unsigned int I2CBus, unsigned int I2CAddress):
 	this->I2CAddress = I2CAddress;
 	this->I2CBus = I2CBus;
 	this->registers = NULL;
-	this->writeRegister(OSCI_START, 0x00);
+	this->writeRegister(0x00, OSCI_START); // adress , value
 }
 
 /*
@@ -80,7 +80,7 @@ void DS1307::updateRTC(){
 }; */
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
-	int tmhour, tmmon, tmyear, tmwday;
+	int tmsec, tmmin, tmhour, tmwday, tmmday, tmmon, tmyear;
 	tmhour = tm.tm_hour+1;
 	tmmon = tm.tm_mon+1;
 	tmyear = tm.tm_year+1900;
@@ -88,6 +88,21 @@ void DS1307::updateRTC(){
 	tmwday = tm.tm_wday+1;
 	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tmhour <<endl;
 	cout << "wday: "<< tmwday <<"   date: "<< tm.tm_mday <<"   month: "<< tmmon<<"   year: "<< tmyear <<endl;
+	tmsec = tm.tm_sec;
+	tmmin = tm.tm_min;
+	tmhour = tmhour-1;
+	tmwday = tmwday;
+	tmmday = tmmday;
+	tmmon = tmmon;
+	tmyear =tmyear -2000;
+	this->writeRegister(0x00, OSCI_STOP); // adress , value
+	this->writeRegister(MINUTES, tmmin);
+	this->writeRegister(HOURS, tmhour);
+	this->writeRegister(DAY, tmwday);
+	this->writeRegister(DATE, tmmday);
+	this->writeRegister(MONTH, tmmon);
+	this->writeRegister(YEAR, tmyear);
+	this->writeRegister(0x00, OSCI_START); // adress , value
 
 
 }

@@ -32,7 +32,7 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-string Dec2Hex(int value){
+/*string Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
 	return os.str();
@@ -43,7 +43,7 @@ string Hex2Dec(int value){
 	ostringstream os;
 	os<<dec<<value;	
 	return os.str();
-}
+}*/
 
 
 short DS1307::getData(unsigned char msb){
@@ -106,8 +106,7 @@ void DS1307::updateRTC(){
 	tmyear = tm.tm_year+1900;
 	cout << dec <<endl;
 	tmwday = tm.tm_wday+1;
-	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tmhour 
-		<<"   hours in dec: "<< Hex2Dec(tmhour) <<endl;
+	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tmhour <<endl;
 	cout << "wday: "<< tmwday <<"   date: "<< tm.tm_mday <<"   month: "<< tmmon<<"   year: "<< tmyear <<endl;
 	cout << hex <<endl;
 	tmsec = tm.tm_sec;

@@ -24,6 +24,7 @@
 
 #include <iostream>
 #include "BMP180.h"
+#include "DS1307.h"
 #include <unistd.h>
 #include <pthread.h>
 
@@ -32,15 +33,18 @@ using namespace exploringBB;
 
 int main() {
 
-	BMP180 sensor(1,0x77);
-	sensor.readSensorState();
-	sensor.displayCalibrationData();
+	BMP180 BMP180(1,0x77);
+	DS1307 DS1307(1,0x68);
+	DS1307.readSensorState();
+	DS1307.displayTime();
+	BMP180.readSensorState();
+	BMP180.displayCalibrationData();
 	
 	int i = 0;
 		while(i<3){
-	sensor.readTemperature();
-	sensor.readPressure();
-	sensor.displayResults();
+	BMP180.readTemperature();
+	BMP180.readPressure();
+	BMP180.displayResults();
 	i++;	}
 	return 0;
 }

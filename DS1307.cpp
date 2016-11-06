@@ -70,7 +70,7 @@ void DS1307::updateRTC(){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	cout << dec <<endl;
-	cout << "seconds: "<< tm_sec <<"   minutes: "<< tm_min <<"   hours: "<< tm_hour <<endl;
+	cout << "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tm.tm_hour <<endl;
 
 
 }

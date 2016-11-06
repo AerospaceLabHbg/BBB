@@ -25,8 +25,8 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-short DS1307::getData(unsigned char msb){
-   return (short)msb;
+unsigned char DS1307::getData(unsigned char msb){
+   return msb;
 }
 /*
  * The constructor for the BMP180 object. It passes the bus number and the

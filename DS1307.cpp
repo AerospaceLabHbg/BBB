@@ -87,7 +87,7 @@ int DS1307::readSensorState(){
 }
 
 void DS1307::updateRTC(){
-	/*struct tm {
+	struct tm {
    int tm_sec;          seconds,  range 0 to 59          
    int tm_min;          minutes, range 0 to 59           
    int tm_hour;         hours, range 0 to 23             
@@ -97,7 +97,7 @@ void DS1307::updateRTC(){
    int tm_wday;        day of the week, range 0 to 6    
    int tm_yday;         day in the year, range 0 to 365  
    int tm_isdst;        daylight saving time             
-}; */
+}; 
 	time_t t = time(NULL); // set beaglebone time to RTC momentan mit fehlern!!
 	struct tm tm = *localtime(&t);
 	/*int tmsec, tmmin, tmhour, tmwday, tmmday, tmmon, tmyear;

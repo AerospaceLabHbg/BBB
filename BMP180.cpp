@@ -104,6 +104,7 @@ int BMP180::readSensorState(){
 }
 
 void BMP180::displayCalibrationData(){
+	cout << dec <<endl;
 	cout << "AC1:"<< ac1 << "   AC2:" << ac2 << endl;
 	cout << "AC3:"<< ac3 << "   AC4:" << ac4 << endl;
 	cout << "AC5:"<< ac5 << "   AC6:" << ac6 << endl;
@@ -129,6 +130,7 @@ up = up >>(8-OSS);
 }
 
 void BMP180::displayResults(){
+cout << dec <<endl;
 cout << "ut:"<< ut << "   up:" << up << endl;		
 }
 	

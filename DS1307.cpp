@@ -143,7 +143,7 @@ void DS1307::displayTime(){
 	cout << hex <<endl;
 	cout << "secondsRTC: "<< seconds <<"   minutesRTC: "<< minutes <<"   hoursRTC: "<< hours <<"   dayRTC: "<< day<< endl;
 	cout << dec <<endl;
-	cout << "secondsBB: "<< tm.tm_sec <<"   minutesBB: "<< tm.tm_min <<"   hoursBB: "<< tm.tm_hour <<"   dayBB: "<< tm.tm_day <<endl;
+	cout << "secondsBB: "<< tm.tm_sec <<"   minutesBB: "<< tm.tm_min <<"   hoursBB: "<< tm.tm_hour <<"   dayBB: "<< tm.tm_wday <<endl;
 
 
 }

@@ -29,17 +29,21 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-string Dec2Hex(int value){
+unsigned char Dec2Hex(int value){
+	char temp1[257];
 	ostringstream os;
 	os<<hex<<value;
-	return os.str();
+	strcpy(temp1,os.str().c_str());
+	return temp1;
 }
 
 	
-string Hex2Dec(int value){
+unsigned char Hex2Dec(int value){
+	char temp2[257];
 	ostringstream os;
 	os<<dec<<value;
-	return os.str();
+	strcpy(temp2,os.str().c_str());
+	return temp2;
 }
 
 

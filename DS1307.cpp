@@ -33,7 +33,10 @@ namespace exploringBB {
 int Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
-	int i_Hex = atoi (os);
+	char tab1 [257];
+	strncpy(tab1, os, sizeof(tab1));
+	tab1[sizeof(tab1)-1]=0;
+	int i_Hex = atoi (tab1);
 	return i_Hex;
 }
 
@@ -41,7 +44,10 @@ int Dec2Hex(int value){
 int Hex2Dec(int value){	
 	ostringstream os;
 	os<<dec<<value;	
-	int i_Dec = atoi (os);
+	char tab2 [257];
+	strncpy(tab2, os, sizeof(tab2));
+	tab1[sizeof(tab2)-1]=0;
+	int i_Dec = atoi (tab2);
 	return i_Dec;
 }
 

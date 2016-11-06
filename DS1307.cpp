@@ -33,7 +33,7 @@ unsigned char Dec2Hex(int value){
 	char temp1[257];
 	ostringstream os;
 	os<<hex<<value;
-	strcpy(temp1,os.str().c_str());
+	strcpy(temp1,os.c_str());
 	return temp1;
 }
 
@@ -42,7 +42,7 @@ unsigned char Hex2Dec(int value){
 	char temp2[257];
 	ostringstream os;
 	os<<dec<<value;
-	strcpy(temp2,os.str().c_str());
+	strcpy(temp2,os.c_str());
 	return temp2;
 }
 

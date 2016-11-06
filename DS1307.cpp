@@ -9,9 +9,11 @@
 #include <stdio.h>
 #include <iomanip>
 #include <cstddef>
-
+#include <cstring>
+#include <cstdio>
 
 using namespace std;
+
 
 namespace exploringBB {
 
@@ -46,7 +48,7 @@ int Hex2Dec(int value){
 	os<<dec<<value;	
 	char tab2 [257];
 	strncpy(tab2, os.str(), sizeof(tab2));
-	tab1[sizeof(tab2)-1]=0;
+	tab2[sizeof(tab2)-1]=0;
 	int i_Dec = atoi (tab2);
 	return i_Dec;
 }

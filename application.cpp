@@ -41,10 +41,13 @@ int main() {
 	BMP180.displayCalibrationData();
 	
 	int i = 0;
-		while(i<3){
+		while(i<10){
 	BMP180.readTemperature();
 	BMP180.readPressure();
+	DS1307.readData();
+	DS1307.displayTime();
 	BMP180.displayResults();
+			usleep(1000000);
 	i++;	}
 	return 0;
 }

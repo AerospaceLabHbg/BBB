@@ -41,7 +41,7 @@ int main() {
 	BMP180.displayCalibrationData();
 	
 	int i = 0;
-		while(i<5){
+		while(i<10800){
 	BMP180.readTemperature();
 	BMP180.readPressure();
 	DS1307.readData();

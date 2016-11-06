@@ -2,7 +2,7 @@
 #include "DS1307.h"
 #include <iostream>
 #include <sstream>
-#include <string.h>
+#include <string>
 #include <unistd.h>
 #include <math.h>
 #include <time.h>
@@ -32,13 +32,16 @@ namespace exploringBB {
 int Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
-	return stoi( os.str() );
+	int i_hex = stoi (os,nullptr,16);
+	return i_hex;
 }
 
 	
 int Hex2Dec(int value){
+	string::size_type sz;
 	ostringstream os;
 	os<<dec<<value;
+	int i_dec = stoi (os,&sz)
 	return stoi( os.str() );
 }
 

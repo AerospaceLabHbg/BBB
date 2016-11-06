@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <iomanip>
 
+
 using namespace std;
 
 namespace exploringBB {
@@ -26,7 +27,7 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-#define HEX(x) setw(2) << setfill('0') << hex << (int)(x)
+
 
 short DS1307::getData(unsigned char msb){
    return msb;
@@ -98,9 +99,11 @@ void DS1307::updateRTC(){
 	tmmon = tmmon;
 	tmyear =tmyear -2000;
 	
+	string tmhour_s = string("0x")+tmhour;
+	
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
 	this->writeRegister(MINUTES, tmmin);
-	this->writeRegister(HEX(HOURS), tmhour);
+	this->writeRegister(HOURS, tmhour_s);
 	this->writeRegister(DAY, tmwday);
 	this->writeRegister(DATE, tmmday);
 	this->writeRegister(MONTH, tmmon);

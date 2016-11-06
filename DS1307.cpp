@@ -99,7 +99,7 @@ void DS1307::updateRTC(){
 	tmmday = tmmday;
 	tmmon = tmmon;
 	tmyear =tmyear -2000;
-	
+	ios_base& dec (ios_base& str);
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
 	this->writeRegister(MINUTES, tmmin);
 	this->writeRegister(HOURS, tmhour);
@@ -108,7 +108,7 @@ void DS1307::updateRTC(){
 	this->writeRegister(MONTH, tmmon);
 	this->writeRegister(YEAR, tmyear);
 	this->writeRegister(0x00, OSCI_START); // adress , value
-
+	ios_base& hex (ios_base& str);
 
 }
 	

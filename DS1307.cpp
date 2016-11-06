@@ -70,7 +70,8 @@ void DS1307::updateRTC(){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	cout << dec <<endl;
-	cout << "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tm.tm_hour <<endl;
+	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tm.tm_hour <<endl;
+	cout << "wday: "<< tm.tm_wday <<"   date: "<< tm.tm_mday <<"   month: "<< tm.tm_mon<<"   year: "<< tm.tm_year <<endl;
 
 
 }

@@ -99,7 +99,7 @@ void DS1307::updateRTC(){
 	tmmon = tmmon;
 	tmyear =tmyear -2000;
 	
-	string tmhour_s = string("0x")+tmhour;
+	unsigned char tmhour_s = string("0x")+tmhour;
 	
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
 	this->writeRegister(MINUTES, tmmin);

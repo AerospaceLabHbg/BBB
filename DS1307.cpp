@@ -25,7 +25,7 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-unsigned char DS1307::getData(unsigned char msb){
+short DS1307::getData(unsigned char msb){
    return msb;
 }
 /*

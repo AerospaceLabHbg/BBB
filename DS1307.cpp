@@ -91,7 +91,7 @@ void DS1307::updateRTC(){
 	tmwday = tm.tm_wday+1;
 	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tmhour <<endl;
 	cout << "wday: "<< tmwday <<"   date: "<< tm.tm_mday <<"   month: "<< tmmon<<"   year: "<< tmyear <<endl;
-	cout << dec <<endl;
+	cout << hex <<endl;
 	tmsec = tm.tm_sec;
 	tmmin = tm.tm_min;
 	tmhour = tmhour-1;

@@ -1,6 +1,8 @@
 
 #include "DS1307.h"
 #include <iostream>
+#include <sstream>
+#include <string>
 #include <unistd.h>
 #include <math.h>
 #include <time.h>
@@ -27,6 +29,18 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
+string Dec2Hex(int value){
+	ostringstream os;
+	os<<hex<<value;
+	return os.str();
+}
+
+	
+string Hex2Dec(int value){
+	ostringstream os;
+	os<<dec<<value;
+	return os.str();
+}
 
 
 short DS1307::getData(unsigned char msb){
@@ -101,12 +115,12 @@ void DS1307::updateRTC(){
 	tmyear =tmyear -2000;
 
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
-	this->writeRegister(MINUTES, tmmin);
-	this->writeRegister(HOURS, tmhour);
-	this->writeRegister(DAY, tmwday);
-	this->writeRegister(DATE, tmmday);
-	this->writeRegister(MONTH, tmmon);
-	this->writeRegister(YEAR, tmyear);
+	this->writeRegister(Hex2Dec(MINUTES), tmmin);
+	this->writeRegister(Hex2Dec(HOURS), tmhour);
+	this->writeRegister(Hex2Dec(DAY), tmwday);
+	this->writeRegister(Hex2Dec(DATE), tmmday);
+	this->writeRegister(Hex2Dec(MONTH), tmmon);
+	this->writeRegister(Hex2Dec(YEAR), tmyear);
 	this->writeRegister(0x00, OSCI_START); // adress , value
 
 }

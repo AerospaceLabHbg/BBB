@@ -1,3 +1,5 @@
+#include <gps.h>
+
 int main(void)
 {
     gpsmm gps_rec("localhost", DEFAULT_GPSD_PORT);

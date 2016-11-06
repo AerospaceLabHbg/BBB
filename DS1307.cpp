@@ -31,19 +31,16 @@ namespace exploringBB {
 #define YEAR		  0x06
 
 int Dec2Hex(int value){
-	ostringstream os;
+	int os;
 	os<<hex<<value;
-	int i_hex = stoi(os,nullptr,16);
-	return i_hex;
+	return os;
 }
 
 	
-int Hex2Dec(int value){
-	string::size_type sz;
-	ostringstream os;
-	os<<dec<<value;
-	int i_dec = stoi(os,&sz);
-	return (i_dec);
+int Hex2Dec(int value){	
+	int os;
+	os<<dec<<value;	
+	return os;
 }
 
 

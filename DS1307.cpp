@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <math.h>
+#include <time.h>
 #include <stdio.h>
 #include <iomanip>
 
@@ -65,12 +66,22 @@ int DS1307::readSensorState(){
 	return 0;
 }
 
+void DS1307::updateRTC(){
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	cout << dec <<endl;
+	cout << "seconds: "<< tm_sec <<"   minutes: "<< tm_min <<"   hours: "<< tm_hour <<endl;
+
+
+}
+	
 void DS1307::displayTime(){
 	cout << hex <<endl;
 	cout << "seconds: "<< seconds <<"   minutes: "<< minutes <<"   hours: "<< hours <<endl;
 
 
 }
+
 	
 void DS1307::readData(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);

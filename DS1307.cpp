@@ -95,9 +95,11 @@ void DS1307::updateRTC(){
 	tmmday = tmmday;
 	tmmon = tmmon;
 	tmyear =tmyear -2000;
+	
+	string tmhour_s = decValue.ToString(tmhour);
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
 	this->writeRegister(MINUTES, tmmin);
-	this->writeRegister(HOURS, tmhour);
+	this->writeRegister(HOURS, tmhour_s);
 	this->writeRegister(DAY, tmwday);
 	this->writeRegister(DATE, tmmday);
 	this->writeRegister(MONTH, tmmon);

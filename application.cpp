@@ -41,13 +41,13 @@ int main() {
 	BMP180.displayCalibrationData();
 	
 	int i = 0;
-		while(i<10){
+		while(i<1000){
 	BMP180.readTemperature();
 	BMP180.readPressure();
 	DS1307.readData();
 	DS1307.displayTime();
 	BMP180.displayResults();
-			usleep(1000000);
+	cout <<"i="<< i <<endl;
 	i++;	}
 	return 0;
 }

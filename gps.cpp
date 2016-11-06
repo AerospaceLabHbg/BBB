@@ -67,7 +67,7 @@ static void libgps_dump_state(struct gps_data_t *collect)
 		      collect->policy.scaled ? "true" : "false",
 		      collect->policy.timing ? "true" : "false",
 		      collect->policy.devpath);
-   /* if (collect->set & SATELLITE_SET) {
+    if (collect->set & SATELLITE_SET) {
 	int i;
 
 	(void)fprintf(stdout, "SKY: satellites in view: %d\n",
@@ -81,7 +81,7 @@ static void libgps_dump_state(struct gps_data_t *collect)
 			  collect->skyview[i].used ? 'Y' : 'N');
 	}
     }
-    */
+    
     if (collect->set & DEVICE_SET)
 	(void)fprintf(stdout, "DEVICE: Device is '%s', driver is '%s'\n",
 		      collect->dev.path, collect->dev.driver);

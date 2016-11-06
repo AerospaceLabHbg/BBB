@@ -2,7 +2,7 @@
 #include "DS1307.h"
 #include <iostream>
 #include <sstream>
-#include <string.h>
+#include <string>
 #include <unistd.h>
 #include <math.h>
 #include <time.h>
@@ -32,14 +32,14 @@ namespace exploringBB {
 int Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
-	return std::stoi( os.str() );
+	return stoi( os.str() );
 }
 
 	
 int Hex2Dec(int value){
 	ostringstream os;
 	os<<dec<<value;
-	return std::stoi( os.str() );
+	return stoi( os.str() );
 }
 
 
@@ -117,7 +117,7 @@ void DS1307::updateRTC(){
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
 	this->writeRegister(MINUTES, Hex2Dec(tmmin));
 	this->writeRegister(HOURS, Hex2Dec(tmhour));
-	this->writeRegister(DAY, Hex2Dec(Hex2Dec(tmwday));
+	this->writeRegister(DAY, Hex2Dec(tmwday));
 	this->writeRegister(DATE, Hex2Dec(tmmday));
 	this->writeRegister(MONTH, Hex2Dec(tmmon));
 	this->writeRegister(YEAR, Hex2Dec(tmyear));

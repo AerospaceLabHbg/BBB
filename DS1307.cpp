@@ -48,7 +48,7 @@ DS1307::DS1307(unsigned int I2CBus, unsigned int I2CAddress):
  */
 int DS1307::readSensorState(){
 	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-	if(readRegister(DEVIDREGBMP)!=DEVIDBMP){
+	if(readRegister(DEVIDREGDS1307	)!=DEVIDDS1307){
 		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}

@@ -25,6 +25,8 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
+short DS1307::getData(unsigned char msb){
+   return (short)msb;
 /*
  * The constructor for the BMP180 object. It passes the bus number and the
  * device address (with is 0x53 by default) to the constructor of I2CDevice. All of the states
@@ -52,7 +54,7 @@ int DS1307::readSensorState(){
 		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}
-	seconds = this->(short)(*(registers+SECONDS));
+	this->seconds = this->getData(*(registers+SECONDS));
 	return 0;
 }
 
@@ -63,7 +65,7 @@ void DS1307::displayTime(){
 	
 void DS1307::readData(){
 this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-seconds = this->(short)(*(registers+SECONDS));
+this->seconds = this->getData(*(registers+SECONDS));
 }
 	
 

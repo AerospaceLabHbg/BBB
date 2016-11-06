@@ -2,7 +2,7 @@
 #include "DS1307.h"
 #include <iostream>
 #include <sstream>
-#include <string>
+#include <string.h>
 #include <unistd.h>
 #include <math.h>
 #include <time.h>

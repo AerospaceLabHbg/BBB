@@ -131,7 +131,11 @@ up = up >>(8-OSS);
 
 void BMP180::displayResults(){
 cout << dec <<endl;
-cout << "ut:"<< ut << "   up:" << up << endl;		
+x1=(ut-ac6)*ac5/(pow(2,15));
+x2=mc*pow(2,11)/(x1+md);
+b5=x1+x2;
+t=(b5+8)/16;
+cout << "t:"<< t << "   up:" << up << endl;		
 }
 	
 BMP180::~BMP180() {}

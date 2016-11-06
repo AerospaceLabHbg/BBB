@@ -119,12 +119,12 @@ void DS1307::updateRTC(){
 	tmyear =tmyear -2000;
 
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
-	this->writeRegister(Hex2Dec(MINUTES), tmmin);
-	this->writeRegister(Hex2Dec(HOURS), tmhour);
-	this->writeRegister(Hex2Dec(DAY), tmwday);
-	this->writeRegister(Hex2Dec(DATE), tmmday);
-	this->writeRegister(Hex2Dec(MONTH), tmmon);
-	this->writeRegister(Hex2Dec(YEAR), tmyear);
+	this->writeRegister(MINUTES, Hex2Dec(tmmin));
+	this->writeRegister(HOURS, Hex2Dec(tmhour));
+	this->writeRegister(DAY, Hex2Dec(Hex2Dec(tmwday));
+	this->writeRegister(DATE, Hex2Dec(tmmday));
+	this->writeRegister(MONTH, Hex2Dec(tmmon));
+	this->writeRegister(YEAR, Hex2Dec(tmyear));
 	this->writeRegister(0x00, OSCI_START); // adress , value
 
 }

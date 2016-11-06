@@ -33,20 +33,20 @@ using namespace exploringBB;
 
 int main() {
 
-	BMP180 BMP180(1,0x77);
+	//BMP180 BMP180(1,0x77);
 	DS1307 DS1307(1,0x68);
 	DS1307.readSensorState();
 	DS1307.updateRTC();
-	BMP180.readSensorState();
-	BMP180.displayCalibrationData();
+	//BMP180.readSensorState();
+	//BMP180.displayCalibrationData();
 	
 	int i = 0;
 		while(i<1000){
-	BMP180.readTemperature();
-	BMP180.readPressure();
+	//BMP180.readTemperature();
+	//BMP180.readPressure();
 	DS1307.readData();
 	DS1307.displayTime();
-	BMP180.displayResults();
+	//BMP180.displayResults();
 	cout <<"i="<< i <<endl;
 	i++;	}
 	return 0;

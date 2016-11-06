@@ -8,6 +8,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <iomanip>
+#include <cstddef>
 
 
 using namespace std;
@@ -32,7 +33,7 @@ namespace exploringBB {
 int Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
-	int i_hex = stoi (os,nullptr,16);
+	int i_hex = stoi(os,nullptr,16);
 	return i_hex;
 }
 
@@ -41,8 +42,8 @@ int Hex2Dec(int value){
 	string::size_type sz;
 	ostringstream os;
 	os<<dec<<value;
-	int i_dec = stoi (os,&sz)
-	return stoi( os.str() );
+	int i_dec = stoi(os,&sz);
+	return i_dec);
 }
 
 

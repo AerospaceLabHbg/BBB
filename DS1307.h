@@ -11,7 +11,7 @@ private:
 	unsigned int I2CBus, I2CAddress; //initialiserung für BMP180(I2CBus,I2CAddress)
 	unsigned char *registers;
 	short seconds, minutes, hours, day, date, month, year;
-	int getData(unsigned char msb);
+	short getData(unsigned char msb);
 
 
 public:

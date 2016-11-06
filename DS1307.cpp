@@ -56,18 +56,31 @@ int DS1307::readSensorState(){
 		return -1;
 	}
 	this->seconds = this->getData(*(registers+SECONDS));
+	this->minutes = this->getData(*(registers+MINUTES));
+	this->hours = this->getData(*(registers+HOURS));
+	this->day = this->getData(*(registers+DAY));
+	this->date = this->getData(*(registers+DATE));
+	this->month = this->getData(*(registers+MONTH));
+	this->year = this->getData(*(registers+YEAR));
 	return 0;
 }
 
 void DS1307::displayTime(){
 	cout << hex <<endl;
-	cout << "seconds:"<< seconds << endl;
+	cout << "seconds: "<< seconds <<"   minutes: "<< minutes <<"   hours: "<< hours <<endl;
+
 
 }
 	
 void DS1307::readData(){
-this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-this->seconds = this->getData(*(registers+SECONDS));
+	this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
+	this->seconds = this->getData(*(registers+SECONDS));
+	this->minutes = this->getData(*(registers+MINUTES));
+	this->hours = this->getData(*(registers+HOURS));
+	this->day = this->getData(*(registers+DAY));
+	this->date = this->getData(*(registers+DATE));
+	this->month = this->getData(*(registers+MONTH));
+	this->year = this->getData(*(registers+YEAR));
 }
 	
 

@@ -98,9 +98,9 @@ void DS1307::updateRTC(){
    int tm_yday;         day in the year, range 0 to 365  
    int tm_isdst;        daylight saving time             
 }; */
-	/*time_t t = time(NULL); // set beaglebone time to RTC momentan mit fehlern!!
+	time_t t = time(NULL); // set beaglebone time to RTC momentan mit fehlern!!
 	struct tm tm = *localtime(&t);
-	int tmsec, tmmin, tmhour, tmwday, tmmday, tmmon, tmyear;
+	/*int tmsec, tmmin, tmhour, tmwday, tmmday, tmmon, tmyear;
 	tmhour = tm.tm_hour+1;
 	tmmon = tm.tm_mon+1;
 	tmyear = tm.tm_year+1900;
@@ -138,7 +138,8 @@ void DS1307::updateRTC(){
 	
 void DS1307::displayTime(){
 	cout << hex <<endl;
-	cout << "seconds: "<< seconds <<"   minutes: "<< minutes <<"   hours: "<< hours <<endl;
+	cout << "secondsRTC: "<< seconds <<"   minutesRTC: "<< minutes <<"   hoursRTC: "<< hours <<"   dayRTC: "<< day<< endl;
+	cout << "secondsBB: "<< tm.tm_sec <<"   minutesBB: "<< tm.tm_min <<"   hoursBB: "<< tm.tm_hour <<"   dayBB: "<< tm.tm_day <<endl;
 
 
 }

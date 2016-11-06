@@ -98,7 +98,7 @@ void DS1307::updateRTC(){
    int tm_yday;         day in the year, range 0 to 365  
    int tm_isdst;        daylight saving time             
 }; */
-	time_t t = time(NULL);
+	/*time_t t = time(NULL); // set beaglebone time to RTC momentan mit fehlern!!
 	struct tm tm = *localtime(&t);
 	int tmsec, tmmin, tmhour, tmwday, tmmday, tmmon, tmyear;
 	tmhour = tm.tm_hour+1;
@@ -125,7 +125,15 @@ void DS1307::updateRTC(){
 	this->writeRegister(MONTH, tmmon);
 	this->writeRegister(YEAR, tmyear);
 	this->writeRegister(0x00, OSCI_START); // adress , value
-
+*/
+	this->writeRegister(0x00, OSCI_STOP); // adress , value
+	this->writeRegister(MINUTES,0x00);
+	this->writeRegister(HOURS, 0x00);
+	this->writeRegister(DAY, 0x00);
+	this->writeRegister(DATE, 0x00);
+	this->writeRegister(MONTH, 0x00);
+	this->writeRegister(YEAR, 0x00);
+	this->writeRegister(0x00, OSCI_START); // adress , value
 }
 	
 void DS1307::displayTime(){

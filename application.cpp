@@ -36,7 +36,7 @@ int main() {
 	BMP180 BMP180(1,0x77);
 	DS1307 DS1307(1,0x68);
 	DS1307.readSensorState();
-	DS1307.displayTime();
+	DS1307::updateRTC();
 	BMP180.readSensorState();
 	BMP180.displayCalibrationData();
 	

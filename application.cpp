@@ -47,7 +47,7 @@ int main() {
 	DS1307.readData();
 	DS1307.displayTime();
 	BMP180.displayResults();
-	cout <<"i="<< i <<endl;
+	cout <<dec<<"i="<< i <<endl;
 	i++;	}
 	return 0;
 }

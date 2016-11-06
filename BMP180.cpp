@@ -135,7 +135,23 @@ x1=(ut-ac6)*ac5/(pow(2,15));
 x2=mc*pow(2,11)/(x1+md);
 b5=x1+x2;
 temperature=(b5+8)/16;
-cout << "t:"<< temperature << "   up:" << up << endl;		
+b6=b5-4000;
+x1=(b2*(b6*b6/pow(2,12)))/pow(2,11);
+x2=ac2*b6/pow(2,11);
+x3=x1+x2;
+b3=(((ac1*4+x3)<<OSS)+2)/4;
+x1=ac3*b6/pow(2,13);
+x2=(b1*(b6*b6/pow(2,12))/pow(2,16);
+x3=((x1+x2)+2)/4;
+b4=ac4*(unsigned long)(x3+32768)/pow(2,15);
+b7=((unsigned long)up-b3)*(50000>>OSS);
+if(b7<0x80000000){pressure=(b7*2)/b4}
+    else{pressure=(b7/b4)*2}
+x1=(pressure/256)*(pressure/256);
+x1=(x1*3038)/pow(2,16);
+x2=(-7357*pressure)/pow(2,16);
+pressure=pressure+(x1+x2+3791)/16;
+cout << "t:"<< temperature << "   p:" << pressure << endl;		
 }
 	
 BMP180::~BMP180() {}

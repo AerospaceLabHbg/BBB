@@ -48,6 +48,7 @@ int main() {
 	DS1307.displayTime();
 	BMP180.displayResults();
 	cout <<dec<<"i="<< i <<endl;
+			usleep(1000000);
 	i++;	}
 	return 0;
 }

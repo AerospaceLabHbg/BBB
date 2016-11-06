@@ -15,10 +15,10 @@ private:
 
 public:
 	DS1307(unsigned int I2CBus, unsigned int I2CAddress=0x68);
-	virtual void displayTime();
-	virtual void readTime();
+	virtual void readData();
 	virtual int readSensorState();
 	virtual void displayDate();
+	virtual void displayTime();
 	virtual ~DS1307();
 };
 

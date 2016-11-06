@@ -60,6 +60,7 @@ int DS1307::readSensorState(){
 }
 
 void DS1307::displayTime(){
+	cout << hex <<endl;
 	cout << "seconds:"<< seconds << endl;
 
 }

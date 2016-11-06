@@ -29,21 +29,17 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-char Dec2Hex(int value){
-	char temp1[257];
+int Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
-	strncpy(temp1,os.str());
-	return temp1;
+	return std::stoi( os.str() );
 }
 
 	
-char Hex2Dec(int value){
-	char temp2[257];
+int Hex2Dec(int value){
 	ostringstream os;
 	os<<dec<<value;
-	strncpy(temp2,os.str());
-	return temp2;
+	return std::stoi( os.str() );
 }
 
 

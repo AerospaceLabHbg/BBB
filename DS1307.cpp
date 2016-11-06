@@ -52,7 +52,7 @@ int DS1307::readSensorState(){
 		perror("BMP180: Failure Condition - Sensor ID not Verified");
 		return -1;
 	}
-	this->seconds = this->*(registers+SECONDS);
+	this->seconds = this->(short)*(registers+SECONDS);
 	return 0;
 }
 
@@ -63,7 +63,7 @@ void DS1307::displayTime(){
 	
 void DS1307::readData(){
 this->registers = this->readRegisters(BUFFER_SIZE, 0x00);
-this->seconds = this->*(registers+SECONDS);
+this->seconds = this->(short)*(registers+SECONDS);
 }
 	
 

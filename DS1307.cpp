@@ -32,25 +32,17 @@ namespace exploringBB {
 #define MONTH		  0x05
 #define YEAR		  0x06
 
-int Dec2Hex(int value){
+string Dec2Hex(int value){
 	ostringstream os;
 	os<<hex<<value;
-	char tab1 [257];
-	strncpy(tab1, os.str(), sizeof(tab1));
-	tab1[sizeof(tab1)-1]=0;
-	int i_Hex = atoi (tab1);
-	return i_Hex;
+	return os.str();
 }
 
 	
-int Hex2Dec(int value){	
+string Hex2Dec(int value){	
 	ostringstream os;
 	os<<dec<<value;	
-	char tab2 [257];
-	strncpy(tab2, os.str(), sizeof(tab2));
-	tab2[sizeof(tab2)-1]=0;
-	int i_Dec = atoi (tab2);
-	return i_Dec;
+	return os.str();
 }
 
 
@@ -114,7 +106,8 @@ void DS1307::updateRTC(){
 	tmyear = tm.tm_year+1900;
 	cout << dec <<endl;
 	tmwday = tm.tm_wday+1;
-	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tmhour <<endl;
+	cout << "BBB Time->  "<< "seconds: "<< tm.tm_sec <<"   minutes: "<< tm.tm_min <<"   hours: "<< tmhour 
+		<<"   hours in dec: "<< Dec2Hex(tmhour) <<endl;
 	cout << "wday: "<< tmwday <<"   date: "<< tm.tm_mday <<"   month: "<< tmmon<<"   year: "<< tmyear <<endl;
 	cout << hex <<endl;
 	tmsec = tm.tm_sec;
@@ -126,12 +119,12 @@ void DS1307::updateRTC(){
 	tmyear =tmyear -2000;
 
 	this->writeRegister(0x00, OSCI_STOP); // adress , value
-	this->writeRegister(MINUTES, Hex2Dec(tmmin));
-	this->writeRegister(HOURS, Hex2Dec(tmhour));
-	this->writeRegister(DAY, Hex2Dec(tmwday));
-	this->writeRegister(DATE, Hex2Dec(tmmday));
-	this->writeRegister(MONTH, Hex2Dec(tmmon));
-	this->writeRegister(YEAR, Hex2Dec(tmyear));
+	this->writeRegister(MINUTES,tmmin);
+	this->writeRegister(HOURS, tmhour);
+	this->writeRegister(DAY, tmwday);
+	this->writeRegister(DATE, tmmday);
+	this->writeRegister(MONTH, tmmon);
+	this->writeRegister(YEAR, tmyear);
 	this->writeRegister(0x00, OSCI_START); // adress , value
 
 }

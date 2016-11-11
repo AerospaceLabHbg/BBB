@@ -18,7 +18,7 @@
 #ifndef __NMEALIB_MATH_H__
 #define __NMEALIB_MATH_H__
 
-#include <nmealib/info.h>
+#include "info.h"
 #include <stdbool.h>
 
 #ifdef  __cplusplus

@@ -28,7 +28,7 @@ int main(){
    
    int bytes_read;
    char byte_in[5];
-   byte ARRAY_SIZE = 5;
+   int ARRAY_SIZE = 5;
    bytes_read = read(file, byte_in, ARRAY_SIZE); /* Reads ttyO port, stores data into byte_in. */
 
     for (byte i = ARRAY_SIZE; i < ARRAY_SIZE; i++){

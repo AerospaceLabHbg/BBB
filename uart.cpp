@@ -24,9 +24,9 @@ int main(){
    tcflush(file, TCIFLUSH);
    tcsetattr(file, TCSANOW, &options);
    
-   unsigned char receive[1000];
+   unsigned char receive[80];
    
-   count = read(file, (void*)receive, 1000);
+   count = read(file, (void*)receive, 80);
       printf("The following was read in [%d]: %s\n",count,receive);
  
    close(file);

@@ -11,10 +11,10 @@
 
 /* baudrate settings are defined in <asm/termbits.h>, which is
    included by <termios.h> */
-#define BAUDRATE B9600   // Change as needed, keep B
+#define BAUDRATE B115200   // Change as needed, keep B
 
 /* change this definition for the correct port */
-#define MODEMDEVICE "/dev/ttyO4" //Beaglebone Black serial port
+#define MODEMDEVICE "/dev/ttyO1" //Beaglebone Black serial port
 
 #define _POSIX_SOURCE 1 /* POSIX compliant source */
 
@@ -27,7 +27,7 @@ main()
     struct termios oldtio, newtio;
     char buf[255];
     // Load the pin configuration
-    int ret = system("echo uart4 > /sys/devices/bone_capemgr.9/slots");
+    int ret = system("echo uart1 > /sys/devices/bone_capemgr.9/slots");
     /* Open modem device for reading and writing and not as controlling tty
        because we don't want to get killed if linenoise sends CTRL-C. */
     fd = open(MODEMDEVICE, O_RDWR | O_NOCTTY );
@@ -69,9 +69,6 @@ main()
         res = read(fd, buf, 255);
         buf[res] = 0;             /* set end of string, so we can printf */
         printf("%s", buf, res);
-       
-
-return 0;
     }
     tcsetattr(fd, TCSANOW, &oldtio);
 }

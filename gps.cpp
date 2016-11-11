@@ -1,42 +1,19 @@
-/*
- * I2C.cpp  Created on: 17 May 2014
- * Copyright (c) 2014 Derek Molloy (www.derekmolloy.ie)
- * Made available for the book "Exploring BeagleBone" 
- * See: www.exploringbeaglebone.com
- * Licensed under the EUPL V.1.1
- *
- * This Software is provided to You under the terms of the European 
- * Union Public License (the "EUPL") version 1.1 as published by the 
- * European Union. Any use of this Software, other than as authorized 
- * under this License is strictly prohibited (to the extent such use 
- * is covered by a right of the copyright holder of this Software).
- * 
- * This Software is provided under the License on an "AS IS" basis and 
- * without warranties of any kind concerning the Software, including 
- * without limitation merchantability, fitness for a particular purpose, 
- * absence of defects or errors, accuracy, and non-infringement of 
- * intellectual property rights other than copyright. This disclaimer 
- * of warranty is an essential part of the License and a condition for 
- * the grant of any rights to this Software.
- * 
- * For more details, see http://www.derekmolloy.ie/
- */
 
-#include"I2CDevice.h"
-#include<iostream>
-#include<sstream>
-#include<fcntl.h>
-#include<stdio.h>
-#include<iomanip>
-#include<unistd.h>
-#include<sys/ioctl.h>
-#include<linux/i2c.h>
-#include<linux/i2c-dev.h>
+
+#include"GPSDevice.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 using namespace std;
 
-#define HEX(x) setw(2) << setfill('0') << hex << (int)(x)
 
-namespace exploringBB {
+namespace GPS {
 
 /**
  * Constructor for the I2CDevice class. It requires the bus number and device number. The constructor
@@ -44,11 +21,51 @@ namespace exploringBB {
  * @param bus The bus number. Usually 0 or 1 on the BBB
  * @param device The device ID on the bus.
  */
-I2CDevice::I2CDevice(unsigned int bus, unsigned int device) {
-	this->file=-1;
-	this->bus = bus;
-	this->device = device;
-	this->open();
+GPSDevice::GPSDevice() {
+                    
+    // Load the pin configuration
+    int ret = system("echo uart4 > /sys/devices/bone_capemgr.9/slots");
+    /* Open modem device for reading and writing and not as controlling tty
+       because we don't want to get killed if linenoise sends CTRL-C. */
+    fd = open(MODEMDEVICE, O_RDWR | O_NOCTTY );
+    if (fd < 0) { perror(MODEMDEVICE); exit(-1); }
+
+    bzero(&newtio, sizeof(newtio)); /* clear struct for new port settings */
+
+    /* BAUDRATE: Set bps rate. You could also use cfsetispeed and cfsetospeed.
+       CRTSCTS : output hardware flow control (only used if the cable has
+                 all necessary lines. See sect. 7 of Serial-HOWTO)
+       CS8     : 8n1 (8bit,no parity,1 stopbit)
+       CLOCAL  : local connection, no modem contol
+       CREAD   : enable receiving characters */
+    newtio.c_cflag = BAUDRATE | CRTSCTS | CS8 | CLOCAL | CREAD;
+
+    /* IGNPAR  : ignore bytes with parity errors
+       otherwise make device raw (no other input processing) */
+    newtio.c_iflag = IGNPAR;
+
+    /*  Raw output  */
+    newtio.c_oflag = 0;
+
+    /* ICANON  : enable canonical input
+       disable all echo functionality, and don't send signals to calling program */
+    newtio.c_lflag = ICANON;
+    /* now clean the modem line and activate the settings for the port */
+    tcflush(fd, TCIFLUSH);
+    tcsetattr(fd,TCSANOW,&newtio);
+    // NMEA command to ouput all sentences
+    // Note that this code & format values in manual are hexadecimal
+	write(fd, BAUD_57600, 21);
+        usleep(1000);
+	newtio.c_cflag = BAUDRATEH | CRTSCTS | CS8 | CLOCAL | CREAD;
+	write(fd, UPDATE_200_msec, 21);
+        usleep(1000);
+	write(fd, MEAS_200_msec, 21);
+        usleep(1000);
+	write(fd, GPRMC_GPGGA, 21);
+        usleep(1000);
+
+printf("GPS is Initialized");
 }
 
 /**

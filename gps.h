@@ -22,8 +22,8 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#ifndef I2C_H_
-#define I2C_H_
+#ifndef GPS_H_
+#define GPS_H_
 
  //This sets up variables for useful commands.
 

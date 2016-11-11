@@ -18,17 +18,14 @@ int main(){
    tcflush(file, TCIFLUSH);
    tcsetattr(file, TCSANOW, &options);
    
-   unsigned char receive[100];
+   unsigned char receive[80];
    
-   if ((count = read(file, (void*)receive, 100))<0){
-      perror("Failed to read from the input\n");
-      return -1;
-   }
-   if (count==0) printf("There was no data available to read!\n");
-   else {
-      receive[count]=0;  //There is no null character sent by the Arduino
+   count = read(file, (void*)receive, 80))<0);
       printf("The following was read in [%d]: %s\n",count,receive);
-   }
+   receive[count]=0;  //There is no null character sent by the Arduino
+   printf("The following was read in [%d]: %s\n",count,receive);
+   
+   
    close(file);
    return 0;
 }

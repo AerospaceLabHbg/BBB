@@ -18,8 +18,8 @@
 #ifndef __NMEALIB_GENERATOR_H__
 #define __NMEALIB_GENERATOR_H__
 
-#include <nmealib/info.h>
-#include <nmealib/sentence.h>
+#include "info.h"
+#include "nmealib/sentence.h"
 #include <stdbool.h>
 #include <stddef.h>
 

@@ -31,7 +31,7 @@ int main(){
    int ARRAY_SIZE = 5;
    bytes_read = read(file, byte_in, ARRAY_SIZE); /* Reads ttyO port, stores data into byte_in. */
 
-    for (byte i = ARRAY_SIZE; i < ARRAY_SIZE; i++){
+    for (i = ARRAY_SIZE; i < ARRAY_SIZE; i++){
         cout << bytes_read[i] << endl;
     }
    

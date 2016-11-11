@@ -23,7 +23,7 @@
 #ifndef __NMEALIB_GPRMC_H__
 #define __NMEALIB_GPRMC_H__
 
-#include <nmealib/info.h>
+#include "info.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>

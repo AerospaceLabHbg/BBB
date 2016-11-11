@@ -26,7 +26,7 @@ int main(){
    
    unsigned char receive[1000];
    
-   int bytes_read;
+   int bytes_read[100];
    char byte_in[5];
    int ARRAY_SIZE = 5;
    int i;

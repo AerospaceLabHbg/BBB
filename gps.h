@@ -68,19 +68,13 @@ private:
     	char buf[255];
 public:
 	GPSDevice();
-	virtual int open();
-	virtual int write(unsigned char value);
-	virtual unsigned char readRegister(unsigned int registerAddress);
-	virtual unsigned char* readRegisters(unsigned int number, unsigned int fromAddress=0);
-	virtual int writeRegister(unsigned int registerAddress, unsigned char value);
-	virtual void debugDumpRegisters(unsigned int number = 0xff);
-	virtual void close();
+	virtual int readnmea();
 	virtual ~GPSDevice();
 };
 	
                
 
 
-} /* namespace exploringBB */
+} /* namespace GPS */
 
-#endif /* I2C_H_ */
+#endif /* GPS_H_ */

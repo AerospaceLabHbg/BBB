@@ -7,9 +7,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 //NMEA Parser Lib
-#include <include/nmealib/info.h>
-#include <include/nmealib/nmath.h>
-#include <include/nmealib/parser.h>
+#include "include/nmealib/info.h"
+#include "include/nmealib/nmath.h"
+#include "include/nmealib/parser.h"
 
 
 /* baudrate settings are defined in <asm/termbits.h>, which is

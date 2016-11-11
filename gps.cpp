@@ -15,12 +15,7 @@ using namespace std;
 
 namespace GPS {
 
-/**
- * Constructor for the I2CDevice class. It requires the bus number and device number. The constructor
- * opens a file handle to the I2C device, which is destroyed when the destructor is called
- * @param bus The bus number. Usually 0 or 1 on the BBB
- * @param device The device ID on the bus.
- */
+
 GPSDevice::GPSDevice() {
                     
     // Load the pin configuration
@@ -79,4 +74,4 @@ GPSDevice::~GPSDevice() {
 	  tcsetattr(fd, TCSANOW, &oldtio);
 }
 
-} /* namespace exploringBB */
+} /* namespace GPS */

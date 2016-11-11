@@ -20,7 +20,7 @@ int main(){
    
    unsigned char receive[80];
    
-   count = read(file, (void*)receive, 80))<0);
+   count = read(file, (void*)receive, 80);
       printf("The following was read in [%d]: %s\n",count,receive);
    receive[count]=0;  //There is no null character sent by the Arduino
    printf("The following was read in [%d]: %s\n",count,receive);

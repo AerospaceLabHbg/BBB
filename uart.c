@@ -20,10 +20,21 @@ int main(){
    
    unsigned char receive[1000];
    
+   int bytes_read;
+   char bytes_in[5];
+   byte ARRAY_SIZE = 5;
+   bytes_read = read(file, byte_in, ARRAY_SIZE); /* Reads ttyO port, stores data into byte_in. */
+
+    for (byte i = ARRAY_SIZE; i < ARRAY_SIZE; i++){
+        cout << bytes_read[i] << endl;
+    }
+   
    count = read(file, (void*)receive, 10);
       printf("The following was read in [%d]: %s\n",count,receive);
  
-   
    close(file);
+   
+ 
+     
    return 0;
 }

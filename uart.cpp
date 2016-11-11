@@ -26,7 +26,7 @@ int main(){
    
    unsigned char receive[1000];
    
-   count = read(file, receive, 10);
+   count = read(file, (void*)receive, 1000);
       printf("The following was read in [%d]: %s\n",count,receive);
  
    close(file);

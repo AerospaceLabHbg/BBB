@@ -18,7 +18,7 @@
 #ifndef __NMEALIB_PARSER_H__
 #define __NMEALIB_PARSER_H__
 
-#include <nmealib/info.h>
+#include "info.h"
 #include <stdbool.h>
 #include <stddef.h>
 

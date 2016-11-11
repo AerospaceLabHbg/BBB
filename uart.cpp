@@ -1,8 +1,14 @@
-#include<stdio.h>
-#include<fcntl.h>
-#include<unistd.h>
-#include<termios.h>
-#include<string.h>
+#include <iostream>
+//#include <cmath>
+#include <math.h>
+#include <cstdlib>
+#include <stdio.h>
+#include <string.h>
+#include <termios.h>    /*Enables us to set baud rate for RX/TX separately*/
+#include <fcntl.h>      /*Enables use of flags to modify open(), read(), write() functions*/
+#include <unistd.h>     /*Enables use of open(), read(), write()*/
+
+using namespace std;
 
 int main(){
    int file, count=80;

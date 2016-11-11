@@ -5,7 +5,7 @@
 #include<string.h>
 
 int main(){
-   int file, count;
+   int file, count=80;
 
    if ((file = open("/dev/ttyO4", O_RDWR | O_NOCTTY | O_NDELAY))<0){
       perror("UART: Failed to open the file.\n");

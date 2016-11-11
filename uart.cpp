@@ -4,7 +4,7 @@
 #include <termios.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <unistd.h>
 #include <stdlib.h>
 
 /* baudrate settings are defined in <asm/termbits.h>, which is

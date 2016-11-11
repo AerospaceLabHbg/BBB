@@ -58,11 +58,11 @@
 #ifndef __NMEALIB_SENTENCE_H__
 #define __NMEALIB_SENTENCE_H__
 
-#include <nmealib/gpgga.h>
-#include <nmealib/gpgsa.h>
-#include <nmealib/gpgsv.h>
-#include <nmealib/gprmc.h>
-#include <nmealib/gpvtg.h>
+#include "gpgga.h"
+#include "gpgsa.h"
+#include "gpgsv.h"
+#include "gprmc.h"
+#include "gpvtg.h"
 
 #ifdef  __cplusplus
 extern "C" {

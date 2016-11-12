@@ -27,7 +27,7 @@ main()
     struct termios oldtio, newtio;
     char buf[255];
     // Load the pin configuration
-    int ret = system("echo uart1 > /sys/devices/bone_capemgr.9/slots");
+ //   int ret = system("echo uart1 > /sys/devices/bone_capemgr.9/slots");
     /* Open modem device for reading and writing and not as controlling tty
        because we don't want to get killed if linenoise sends CTRL-C. */
     fd = open(MODEMDEVICE, O_RDWR | O_NOCTTY );

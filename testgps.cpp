@@ -13,7 +13,7 @@ int main() {
 	GPSDevice();
 	int i = 0;
 		while(i<5){
-gps.readnmea();
+	readnmea();
 	cout <<dec<<"i="<< i <<endl;
 	i++;	}
 	return 0;

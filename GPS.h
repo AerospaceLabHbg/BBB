@@ -50,7 +50,7 @@
 /* baudrate settings are defined in <asm/termbits.h>, which is
    included by <termios.h> */
 #define BAUDRATE B9600   // Change as needed, keep B
-#define BAUDRATEH B9600   // Change as needed, keep B
+#define BAUDRATEH B57600   // Change as needed, keep B
 
 /* change this definition for the correct port */
 #define MODEMDEVICE "/dev/ttyO4" //Beaglebone Black serial port

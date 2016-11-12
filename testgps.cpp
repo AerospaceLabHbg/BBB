@@ -10,8 +10,7 @@ using namespace GPS;
 
 int main() {
 
-	gps GPSDevice();
-	
+	GPSDevice GPSDevice();
 	int i = 0;
 		while(i<5){
 gps.readnmea();

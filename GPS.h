@@ -21,6 +21,7 @@
  * 
  * For more details, see http://www.derekmolloy.ie/
  */
+#include <termios.h>
 
 #ifndef GPS_H_
 #define GPS_H_
@@ -42,9 +43,9 @@
                #define BAUD_9600 "$PMTK251,9600*17\r\n"             //Set 9600 Baud Rate
                 //Commands for which NMEA Sentences are sent
                 #define GPRMC_ONLY "$PMTK314,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*29\r\n" //Send only the GPRMC Sentence
-                #define GPRMC_GPGGA"$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n"//Send GPRMC AND GPGGA Sentences
+                #define GPRMC_GPGGA "$PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n"//Send GPRMC AND GPGGA Sentences
                 #define SEND_ALL "$PMTK314,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n" //Send All Sentences
-                #define SEND_NOTHING"$PMTK314,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n" //Send Nothing
+                #define SEND_NOTHING "$PMTK314,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n" //Send Nothing
 
 /* baudrate settings are defined in <asm/termbits.h>, which is
    included by <termios.h> */

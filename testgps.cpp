@@ -10,10 +10,10 @@ using namespace GPS;
 
 int main() {
 
-	GPSDevice();
+	GPSDevice gps();
 	int i = 0;
 		while(i<5){
-	readnmea();
+	gps.readnmea();
 	cout <<dec<<"i="<< i <<endl;
 	i++;	}
 	return 0;

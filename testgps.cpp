@@ -12,9 +12,11 @@ int main() {
 
 	GPSDevice gps;
 	int i = 0;
-		while(i<5){
-	gps.readnmea();
+		while(i<4){
+	cout <<endl;
 	cout <<dec<<"i="<< i <<endl;
+	gps.readnmea();
+	
 	i++;	}
 	return 0;
 }

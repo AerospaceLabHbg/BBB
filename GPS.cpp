@@ -91,7 +91,7 @@ GPSDevice::GPSDevice() {
         usleep(1000);
 	write(fd, MEAS_200_msec,sizeof(MEAS_200_msec));
         usleep(1000);
-	write(fd, GPRMC_GPGGA  ,sizeof(GPRMC_GPGGA  ));
+	write(fd, GPRMC_ONLY,sizeof(GPRMC_GPGGA  ));
         usleep(1000);
 
 printf("GPS is Initialized");
@@ -109,22 +109,7 @@ string token;
 while(getline(ss, token, ',')) {
     cout << token << '\n';
 }
-    /*vector<int> vect;
-string str = "1,2,3,4,5,6";
-    stringstream ss(str);
 
-    int i;
-
-    while (ss >> i)
-    {
-        vect.push_back(i);
-
-        if (ss.peek() == ',')
-            ss.ignore();
-    }
-
-    for (i=0; i< vect.size(); i++)
-        cout << vect.at(i)<<endl;*/
 
 }
 	

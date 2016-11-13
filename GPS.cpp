@@ -101,7 +101,7 @@ int GPSDevice::readnmea(){
 	 buf[res] = 0;             // set end of string, so we can printf 
 	string str(buf);
 	//printf("%s", buf, res);
-	//cout << str <<endl;
+	cout << str <<endl;
 
 istringstream ss(str);
 string token;

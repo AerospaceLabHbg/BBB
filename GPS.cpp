@@ -111,7 +111,7 @@ int GPSDevice::readnmea(){
 	nmea_s *data;
 
 	// Parse...
-	data = nmea_parse(&buf, strlen(buf), 0);
+	data = nmea_parse(buf, strlen(buf), 0);
 	if (NMEA_GPGGA == data->type) {
     nmea_gpgga_s *gpgga = (nmea_gpgga_s *) data;
 

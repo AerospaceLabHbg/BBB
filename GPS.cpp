@@ -102,8 +102,14 @@ int GPSDevice::readnmea(){
 	//string str(buf);
 	//printf("%s", buf, res);
 	//cout << str <<endl;
-	
-    vector<int> vect;
+	string input = "abc,def,ghi";
+istringstream ss(input);
+string token;
+
+while(getline(ss, token, ',')) {
+    cout << token << '\n';
+}
+    /*vector<int> vect;
 string str = "1,2,3,4,5,6";
     stringstream ss(str);
 
@@ -118,7 +124,7 @@ string str = "1,2,3,4,5,6";
     }
 
     for (i=0; i< vect.size(); i++)
-        cout << vect.at(i)<<endl;
+        cout << vect.at(i)<<endl;*/
 
 }
 	

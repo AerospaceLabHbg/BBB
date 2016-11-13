@@ -14,7 +14,7 @@
 #include <iostream>
 
 
-#include "include/nmealib/info.h"
+#include "/nmealib/info.h"
 #include "include/nmealib/nmath.h"
 #include "include/nmealib/parser.h"
 

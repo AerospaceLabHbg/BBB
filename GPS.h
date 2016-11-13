@@ -23,6 +23,10 @@
  */
 #include <termios.h>
 
+#include "include/nmealib/info.h"
+#include "include/nmealib/nmath.h"
+#include "include/nmealib/parser.h"
+
 #ifndef GPS_H_
 #define GPS_H_
 

@@ -71,7 +71,7 @@ public:
 	GPSDevice();
 	virtual int readnmea();
 	virtual ~GPSDevice();
-	closeGPS(); 
+	void closeGPS(); 
 };
 	
                

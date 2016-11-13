@@ -122,7 +122,7 @@ int GPSDevice::readnmea(){
 
 }
 	
-}
+
 
 
 int GPSDevice::closeGPS(){

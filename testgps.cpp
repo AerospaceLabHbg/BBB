@@ -6,7 +6,7 @@
 #include <pthread.h>
 
 using namespace std;
-using namespace GPS;
+
 
 int main() {
 

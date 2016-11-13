@@ -18,6 +18,6 @@ int main() {
 	gps.readnmea();
 	
 	i++;	}
-	gps.~GPSDevice();
+	gps.closeGPS();
 	return 0;
 }

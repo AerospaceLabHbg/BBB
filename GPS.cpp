@@ -140,7 +140,7 @@ while(getline(ss, token, ',')) {
 	nmea[j]=token;
 	j++;
 }
-cout << nmea[0] << '\n';
+cout << nmea[0] <<nmea[13] << '\n';
 
 }
 	

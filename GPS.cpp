@@ -101,7 +101,7 @@ int GPSDevice::readnmea(){
 	 buf[res] = 0;             // set end of string, so we can printf 
 	string str(buf);
 	//printf("%s", buf, res);
-	cout << str <<endl;
+	//cout << str <<endl;
 	
     vector<int> vect;
 
@@ -118,7 +118,7 @@ int GPSDevice::readnmea(){
     }
 
     for (i=0; i< vect.size(); i++)
-        std::cout << vect.at(i)<<std::endl;
+        cout << vect.at(i)<<endl;
 
 }
 	

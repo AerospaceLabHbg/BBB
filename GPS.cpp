@@ -99,11 +99,11 @@ printf("GPS is Initialized");
 int GPSDevice::readnmea(){
         res = read(fd, buf, 255);
 	 buf[res] = 0;             // set end of string, so we can printf 
-	//string str(buf);
+	string str(buf);
 	//printf("%s", buf, res);
 	//cout << str <<endl;
-	string input = "abc,def,ghi";
-istringstream ss(input);
+
+istringstream ss(str);
 string token;
 
 while(getline(ss, token, ',')) {

@@ -68,10 +68,13 @@ int GPSDevice::readnmea(){
         buf[res] = 0;             /* set end of string, so we can printf */
 	printf("%s", buf, res);
 }
-
+GPSDevice::closeGPS(){
+	close(fd);
+}
+	
 GPSDevice::~GPSDevice() {
 	  tcsetattr(fd, TCSANOW, &oldtio);
-	close(fd);
+
 }
 
 } /* namespace GPS */

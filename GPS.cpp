@@ -13,6 +13,10 @@
 #include <string>
 #include <iostream>
 
+#include <nmea.h>
+#include <nmea/gpgll.h>
+#include <nmea/gpgga.h>
+
 using namespace std;
 
 
@@ -87,7 +91,7 @@ GPSDevice::GPSDevice() {
         usleep(1000);
 	write(fd, MEAS_200_msec,sizeof(MEAS_200_msec));
         usleep(1000);
-	write(fd, GPRMC_ONLY ,sizeof(GPRMC_ONLY ));
+	write(fd, GPRMC_GPGGA  ,sizeof(GPRMC_GPGGA  ));
         usleep(1000);
 
 printf("GPS is Initialized");
@@ -100,6 +104,39 @@ int GPSDevice::readnmea(){
 	string str(buf);
 	//printf("%s", buf, res);
 	cout << str <<endl;
+
+	printf("Parsing NMEA sentence: %s", buf);
+
+	// Pointer to struct containing the parsed data. Should be freed manually.
+	nmea_s *data;
+
+	// Parse...
+	data = nmea_parse(buf, strlen(buf), 0);
+	if (NMEA_GPGGA == data->type) {
+    nmea_gpgga_s *gpgga = (nmea_gpgga_s *) data;
+
+    printf("GPGGA Sentence\n");
+    printf("Number of satellites: %d\n", gpgga->n_satellites);
+    printf("Altitude: %d %c\n", gpgga->altitude, gpgga->altitude_unit);
+	}
+
+	if (NMEA_GPGLL == data->type) {
+    nmea_gpgll_s *gpgll = (nmea_gpgll_s *) data;
+
+    printf("GPGLL Sentence\n");
+    printf("Longitude:\n");
+    printf("  Degrees: %d\n", gpgll->longitude.degrees);
+    printf("  Minutes: %f\n", gpgll->longitude.minutes);
+    printf("  Cardinal: %c\n", (char) gpgll->longitude.cardinal);
+    printf("Latitude:\n");
+    printf("  Degrees: %d\n", gpgll->latitude.degrees);
+    printf("  Minutes: %f\n", gpgll->latitude.minutes);
+    printf("  Cardinal: %c\n", (char) gpgll->latitude.cardinal);
+	}
+	
+
+	nmea_free(data);
+	free(buf);
 	
 }
 int GPSDevice::closeGPS(){

@@ -64,7 +64,6 @@
 #define FALSE 0
 #define TRUE 1
 
-namespace GPS {
 
 class GPSDevice{
 private:
@@ -81,6 +80,6 @@ public:
                
 
 
-} /* namespace GPS */
+
 
 #endif /* GPS_H_ */

@@ -14,9 +14,9 @@
 #include <iostream>
 
 
-#include <nmealib/info.h>
-#include <nmealib/nmath.h>
-#include <nmealib/parser.h>
+#include "include/nmealib/info.h"
+#include "include/nmealib/nmath.h"
+#include "include/nmealib/parser.h"
 
 
 using namespace std;

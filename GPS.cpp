@@ -49,15 +49,15 @@ GPSDevice::GPSDevice() {
     tcsetattr(fd,TCSANOW,&newtio);
     // NMEA command to ouput all sentences
     // Note that this code & format values in manual are hexadecimal
-	write(fd, BAUD_57600, 50);
+	write(fd, BAUD_57600, sizeof(BAUD_57600));
         usleep(1000);
 	newtio.c_cflag = BAUDRATEH | CRTSCTS | CS8 | CLOCAL | CREAD;
-	write(fd, UPDATE_200_msec, 50);
+	/*write(fd, UPDATE_200_msec, sizeof(UPDATE_200_msec));
         usleep(1000);
-	write(fd, MEAS_200_msec, 50);
+	write(fd, MEAS_200_msec,sizeof(MEAS_200_msec));
         usleep(1000);
-	write(fd, GPRMC_GPGGA, 50);
-        usleep(1000);
+	write(fd, GPRMC_GPGGA,sizeof(GPRMC_GPGGA));
+        usleep(1000);*/
 
 printf("GPS is Initialized");
 }

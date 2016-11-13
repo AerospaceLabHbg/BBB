@@ -103,7 +103,7 @@ int GPSDevice::readnmea(){
 	//printf("%s", buf, res);
 	cout << str <<endl;
 	
-    vector<string> vect;
+    vector<int> vect;
 
     stringstream ss(str);
 

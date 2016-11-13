@@ -71,6 +71,7 @@ int GPSDevice::readnmea(){
 
 GPSDevice::~GPSDevice() {
 	  tcsetattr(fd, TCSANOW, &oldtio);
+	close(MODEMDEVICE, O_RDWR | O_NOCTTY );
 }
 
 } /* namespace GPS */

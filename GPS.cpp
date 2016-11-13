@@ -102,11 +102,22 @@ int GPSDevice::readnmea(){
 	//printf("%s", buf, res);
 	cout << str <<endl;
 	
-string[] nmeaArray = "Tom,Scott,Bob".Split(',');
-List<string> nmeaList = new List<string>(nmeaArray.Length);
-nmeaList.AddRange(nmeaArray);
-nmeaList.Reverse();
-	cout << nmeaList[0] <<endl;
+    vector<string> vect;
+
+    stringstream ss(str);
+
+    int i;
+
+    while (ss >> i)
+    {
+        vect.push_back(i);
+
+        if (ss.peek() == ',')
+            ss.ignore();
+    }
+
+    for (i=0; i< vect.size(); i++)
+        std::cout << vect.at(i)<<std::endl;
 
 }
 	

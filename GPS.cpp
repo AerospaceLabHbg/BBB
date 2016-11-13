@@ -20,33 +20,9 @@
 
 
 using namespace std;
-int GPS::GPSDevice::readnmea(){
-        res = read(fd, buf, 255);
-	 buf[res] = 0;             // set end of string, so we can printf 
-	string str(buf);
-	//printf("%s", buf, res);
-	cout << str <<endl;
-int it;
-  NmeaInfo info;
-  NmeaParser parser;
-  NmeaPosition dpos;
 
-  nmeaInfoClear(&info);
-  nmeaParserInit(&parser, 0);
 
-  for (it = 0; it < 7; it++) {
-    nmeaParserParse(&parser, &buf[it], strlen(&buf[it]), &info);
 
-    nmeaMathInfoToPosition(&info, &dpos);
-    printf("%03d, Lat: %f, Lon: %f, Sig: %d, Fix: %d\n", it, dpos.lat, dpos.lon, info.sig, info.fix);
-  }
-
-  nmeaParserDestroy(&parser);
-	
-	
-}
-
-namespace GPS {
 
 
 GPSDevice::GPSDevice() {
@@ -122,7 +98,31 @@ GPSDevice::GPSDevice() {
 
 printf("GPS is Initialized");
 }
+int GPSDevice::readnmea(){
+        res = read(fd, buf, 255);
+	 buf[res] = 0;             // set end of string, so we can printf 
+	string str(buf);
+	//printf("%s", buf, res);
+	cout << str <<endl;
+int it;
+  NmeaInfo info;
+  NmeaParser parser;
+  NmeaPosition dpos;
 
+  nmeaInfoClear(&info);
+  nmeaParserInit(&parser, 0);
+
+  for (it = 0; it < 7; it++) {
+    nmeaParserParse(&parser, &buf[it], strlen(&buf[it]), &info);
+
+    nmeaMathInfoToPosition(&info, &dpos);
+    printf("%03d, Lat: %f, Lon: %f, Sig: %d, Fix: %d\n", it, dpos.lat, dpos.lon, info.sig, info.fix);
+  }
+
+  nmeaParserDestroy(&parser);
+	
+	
+}
 
 
 int GPSDevice::closeGPS(){
@@ -134,4 +134,4 @@ GPSDevice::~GPSDevice() {
 
 }
 
-} /* namespace GPS */
+

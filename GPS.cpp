@@ -99,12 +99,12 @@ printf("GPS is Initialized");
 int GPSDevice::readnmea(){
         res = read(fd, buf, 255);
 	 buf[res] = 0;             // set end of string, so we can printf 
-	string str(buf);
+	//string str(buf);
 	//printf("%s", buf, res);
 	//cout << str <<endl;
 	
     vector<int> vect;
-
+string str = "1,2,3,4,5,6";
     stringstream ss(str);
 
     int i;

@@ -14,9 +14,6 @@
 #include <iostream>
 
 
-#include "include/nmealib/info.h"
-#include "include/nmealib/nmath.h"
-#include "include/nmealib/parser.h"
 
 
 using namespace std;
@@ -104,23 +101,14 @@ int GPSDevice::readnmea(){
 	string str(buf);
 	//printf("%s", buf, res);
 	cout << str <<endl;
-int it;
-  NmeaInfo info;
-  NmeaParser parser;
-  NmeaPosition dpos;
-
-  nmeaInfoClear(&info);
-  nmeaParserInit(&parser, 0);
-
-  for (it = 0; it < 7; it++) {
-    nmeaParserParse(&parser, &buf[it], strlen(&buf[it]), &info);
-
-    nmeaMathInfoToPosition(&info, &dpos);
-    printf("%03d, Lat: %f, Lon: %f, Sig: %d, Fix: %d\n", it, dpos.lat, dpos.lon, info.sig, info.fix);
-  }
-
-  nmeaParserDestroy(&parser);
 	
+string[] nmeaArray = "Tom,Scott,Bob".Split(',');
+List<string> nmeaList = new List<string>(nmeaArray.Length);
+nmeaList.AddRange(nmeaArray);
+nmeaList.Reverse();
+	cout << nmeaList[0] <<endl;
+
+}
 	
 }
 

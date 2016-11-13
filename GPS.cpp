@@ -68,7 +68,7 @@ int GPSDevice::readnmea(){
         buf[res] = 0;             /* set end of string, so we can printf */
 	printf("%s", buf, res);
 }
-GPSDevice::closeGPS(){
+int GPSDevice::closeGPS(){
 	close(fd);
 }
 	

@@ -115,7 +115,7 @@ int it;
   nmeaParserInit(&parser, 0);
 
   for (it = 0; it < 7; it++) {
-    nmeaParserParse(&parser, buf[it], strlen(buf[it]), &info);
+    nmeaParserParse(&parser, &buf[it], strlen(&buf[it]), &info);
 
     nmeaMathInfoToPosition(&info, &dpos);
     printf("%03d, Lat: %f, Lon: %f, Sig: %d, Fix: %d\n", it, dpos.lat, dpos.lon, info.sig, info.fix);

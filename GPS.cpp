@@ -80,12 +80,12 @@ GPSDevice::GPSDevice() {
     tcflush(fd, TCIFLUSH);
     tcsetattr(fd,TCSANOW,&newtio);
 	//---------
-	/*write(fd, UPDATE_200_msec, sizeof(UPDATE_200_msec));
+	write(fd, UPDATE_200_msec, sizeof(UPDATE_200_msec));
         usleep(1000);
 	write(fd, MEAS_200_msec,sizeof(MEAS_200_msec));
         usleep(1000);
 	write(fd, GPRMC_GPGGA,sizeof(GPRMC_GPGGA));
-        usleep(1000);*/
+        usleep(1000);
 
 printf("GPS is Initialized");
 }

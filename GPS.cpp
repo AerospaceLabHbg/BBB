@@ -18,34 +18,7 @@
 
 
 using namespace std;
-/*eg4. $GPRMC,hhmmss.ss,A,llll.ll,a,yyyyy.yy,a,x.x,x.x,ddmmyy,x.x,a*hh
-1    = UTC of position fix
-2    = Data status (V=navigation receiver warning)
-3    = Latitude of fix
-4    = N or S
-5    = Longitude of fix
-6    = E or W
-7    = Speed over ground in knots
-8    = Track made good in degrees True
-9    = UT date
-10   = Magnetic variation degrees (Easterly var. subtracts from true course)
-11   = E or W
-12   = Checksum*/
 
- /*struct nmea {         //deklariert den Strukturtyp person
-    	char   	utc[10];
-	char   	status[2];
-	char	latitude[8];
-	char	ns[2];
-	char	longitude[9];
-	char	ew[2];
-	char	speedkn[10];
-	char	trackdeg[10];
-	char	utdate[7];
-	char	magnetic[10];
-	char	ew[2];
-	char	check[10];
-  } gprmc;*/
 
 
 GPSDevice::GPSDevice() {
@@ -125,14 +98,25 @@ int GPSDevice::readnmea(){
 	
         res = read(fd, buf, 255);
 	buf[res] = 0;             // set end of string, so we can printf 
-	string str(buf);
-	//printf("%s", buf, res);
+	string str(buf);	//copy char to string for splitting
 	//cout << str <<endl;
-	
+/*eg4. $GPRMC,hhmmss.ss,A,llll.ll,a,yyyyy.yy,a,x.x,x.x,ddmmyy,x.x,a*hh
+1    = UTC of position fix
+2    = Data status (V=navigation receiver warning)
+3    = Latitude of fix
+4    = N or S
+5    = Longitude of fix
+6    = E or W
+7    = Speed over ground in knots
+8    = Track made good in degrees True
+9    = UT date
+10   = Magnetic variation degrees (Easterly var. subtracts from true course)
+11   = E or W
+12   = Checksum*/
 string nmea[13];
 int j=0;
 	
-istringstream ss(str);
+istringstream ss(str);	//splitting string with comma
 string token;
 
 while(getline(ss, token, ',')) {
@@ -140,10 +124,11 @@ while(getline(ss, token, ',')) {
 	nmea[j]=token;
 	j++;
 }
+	if (nmea[2]="A"){
 cout <<"UTC(hhmmss.ss): "<< nmea[1] << '\n';
 cout <<"Latitude: "<< nmea[3] << nmea[4] << '\n';
 cout <<"Longitude: "<< nmea[5] << nmea[6] << '\n';
-
+	}
 }
 	
 

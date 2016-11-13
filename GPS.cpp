@@ -135,7 +135,7 @@ cout <<"No fix! "<< '\n';
 	else{
 cout <<"Error"<< '\n';
 }
-
+}
 
 
 int GPSDevice::closeGPS(){

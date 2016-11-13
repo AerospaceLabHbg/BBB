@@ -124,10 +124,10 @@ printf("GPS is Initialized");
 int GPSDevice::readnmea(){
 	
         res = read(fd, buf, 255);
-	 buf[res] = 0;             // set end of string, so we can printf 
+	buf[res] = 0;             // set end of string, so we can printf 
 	string str(buf);
 	//printf("%s", buf, res);
-	cout << str <<endl;
+	//cout << str <<endl;
 	
 string nmea[13];
 int j=0;
@@ -140,7 +140,9 @@ while(getline(ss, token, ',')) {
 	nmea[j]=token;
 	j++;
 }
-cout << nmea[0] <<nmea[13] << '\n';
+cout <<"UTC(hhmmss.ss): "<< nmea[1] << '\n';
+cout <<"Latitude: "<< nmea[3] << nmea[4] << '\n';
+cout <<"Longitude: "<< nmea[5] << nmea[6] << '\n';
 
 }
 	

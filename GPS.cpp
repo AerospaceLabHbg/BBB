@@ -124,13 +124,17 @@ while(getline(ss, token, ',')) {
 	nmea[j]=token;
 	j++;
 }
-	if (nmea[2]="A"){
+	if (nmea[2].compare("A") == 0){
 cout <<"UTC(hhmmss.ss): "<< nmea[1] << '\n';
 cout <<"Latitude: "<< nmea[3] << nmea[4] << '\n';
 cout <<"Longitude: "<< nmea[5] << nmea[6] << '\n';
 	}
+	else if (nmea[2].compare("V") == 0){
+cout <<"No fix! "<< '\n';
 }
-	
+	else{
+cout <<"Error"<< '\n';
+}
 
 
 

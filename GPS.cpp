@@ -32,7 +32,7 @@ GPSDevice::GPSDevice() {
        CS8     : 8n1 (8bit,no parity,1 stopbit)
        CLOCAL  : local connection, no modem contol
        CREAD   : enable receiving characters */
-    newtio.c_cflag = BAUDRATE | CRTSCTS | CS8 | CLOCAL | CREAD;
+    newtio.c_cflag = B57600 | CRTSCTS | CS8 | CLOCAL | CREAD;
 
     /* IGNPAR  : ignore bytes with parity errors
        otherwise make device raw (no other input processing) */

@@ -140,8 +140,7 @@ void DS1307::displayTime(){
 	time_t t = time(NULL); // set beaglebone time to RTC momentan mit fehlern!!
 	struct tm tm = *localtime(&t);
 	
-	cout << hex <<endl;
-	cout << "secondsRTC: "<< seconds <<"   minutesRTC: "<< minutes <<"   hoursRTC: "<< hours <<"   dayRTC: "<< day<< endl;
+	cout <<hex<< "secondsRTC: "<< seconds <<"   minutesRTC: "<< minutes <<"   hoursRTC: "<< hours <<"   dayRTC: "<< day<< endl;
 	//cout << dec <<endl;
 	//cout << "secondsBB: "<< tm.tm_sec <<"   minutesBB: "<< tm.tm_min <<"   hoursBB: "<< tm.tm_hour <<"   dayBB: "<< tm.tm_wday <<endl;
 

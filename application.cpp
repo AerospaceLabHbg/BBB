@@ -53,7 +53,7 @@ int main() {
 	DS1307.displayTime();
 	BMP180.displayResults();
 	gps.readnmea();
-	usleep(1000000);
+	
 	i++;	}
 	
 	gps.closeGPS();

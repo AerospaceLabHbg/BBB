@@ -45,7 +45,7 @@ int main() {
 	BMP180.displayCalibrationData();
 	
 	int i = 0;
-		while(i<20){
+		while(i<60){
 			cout <<dec<<"i="<< i <<endl;
 	BMP180.readTemperature();
 	BMP180.readPressure();

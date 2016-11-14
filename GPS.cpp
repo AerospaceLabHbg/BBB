@@ -19,7 +19,7 @@
 
 using namespace std;
 
-
+namespace exploringBB {
 
 GPSDevice::GPSDevice() {
                     
@@ -147,4 +147,4 @@ GPSDevice::~GPSDevice() {
 
 }
 
-
+} /* namespace exploringBB */

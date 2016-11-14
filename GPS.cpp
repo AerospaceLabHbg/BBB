@@ -89,7 +89,7 @@ GPSDevice::GPSDevice() {
         usleep(1000);
 	write(fd, MEAS_200_msec,sizeof(MEAS_200_msec));
         usleep(1000);
-	write(fd, GPRMC_ONLY,sizeof(GPRMC_GPGGA  ));
+	write(fd, GPRMC_ONLY,sizeof(GPRMC_ONLY));
         usleep(1000);
 
 printf("GPS is Initialized");

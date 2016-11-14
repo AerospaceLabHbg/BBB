@@ -25,6 +25,7 @@
 #include <iostream>
 #include "BMP180.h"
 #include "DS1307.h"
+#include "I2CDevice.h"
 #include <unistd.h>
 #include <pthread.h>
 #include "GPS.h"

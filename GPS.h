@@ -21,15 +21,15 @@
  * 
  * For more details, see http://www.derekmolloy.ie/
  */
-#include <termios.h>
 
-#include "include/nmealib/info.h"
-#include "include/nmealib/nmath.h"
-#include "include/nmealib/parser.h"
 
 #ifndef GPS_H_
 #define GPS_H_
 
+#include <termios.h>
+
+
+namespace exploringBB {
  //This sets up variables for useful commands.
 
                 //This set is used to set the rate the GPS reports
@@ -79,7 +79,7 @@ public:
 	
                
 
-
+} /* namespace exploringBB */
 
 
 #endif /* GPS_H_ */

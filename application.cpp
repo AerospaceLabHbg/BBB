@@ -23,12 +23,12 @@
  */
 
 #include <iostream>
-//#include "BMP180.h"
+#include "BMP180.h"
 #include "DS1307.h"
-//#include "I2CDevice.h"
+#include "I2CDevice.h"
 #include <unistd.h>
 #include <pthread.h>
-//#include "GPS.h"
+#include "GPS.h"
 
 
 using namespace std;
@@ -36,27 +36,27 @@ using namespace exploringBB;
 
 int main() {
 
-	//BMP180 BMP180(1,0x77);
+	BMP180 BMP180(1,0x77);
 	DS1307 DS1307(1,0x68);
 	DS1307.readSensorState();
 	DS1307.updateRTC();
-	//GPSDevice gps;
-	//BMP180.readSensorState();
-	//BMP180.displayCalibrationData();
+	GPSDevice gps;
+	BMP180.readSensorState();
+	BMP180.displayCalibrationData();
 	
 	int i = 0;
 		while(i<20){
-	//BMP180.readTemperature();
-	//BMP180.readPressure();
+	BMP180.readTemperature();
+	BMP180.readPressure();
 	DS1307.readData();
 	DS1307.displayTime();
-	//BMP180.displayResults();
-	//gps.readnmea();
+	BMP180.displayResults();
+	gps.readnmea();
 	cout <<dec<<"i="<< i <<endl;
 			usleep(1000000);
 	i++;	}
 	
-	//gps.closeGPS();
+	gps.closeGPS();
 	return 0;
 }
 

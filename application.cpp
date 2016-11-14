@@ -46,14 +46,13 @@ int main() {
 	
 	int i = 0;
 		while(i<20){
+			cout <<dec<<"i="<< i <<endl;
 	BMP180.readTemperature();
 	BMP180.readPressure();
 	DS1307.readData();
 	DS1307.displayTime();
 	BMP180.displayResults();
 	gps.readnmea();
-	cout <<dec<<"i="<< i <<endl;
-			usleep(1000000);
 	i++;	}
 	
 	gps.closeGPS();

@@ -104,8 +104,8 @@ int BMP180::readSensorState(){
 }
 
 void BMP180::displayCalibrationData(){
-	cout << dec <<endl;
-	cout << "AC1:"<< ac1 << "   AC2:" << ac2 << endl;
+	//cout << dec <<endl;
+	cout << dec << "AC1:"<< ac1 << "   AC2:" << ac2 << endl;
 	cout << "AC3:"<< ac3 << "   AC4:" << ac4 << endl;
 	cout << "AC5:"<< ac5 << "   AC6:" << ac6 << endl;
 	cout << "B1:"<< b1 << "   B2:" << b2 << endl;

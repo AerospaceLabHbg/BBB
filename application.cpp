@@ -25,10 +25,10 @@
 #include <iostream>
 #include "BMP180.h"
 #include "DS1307.h"
-#include "I2CDevice.h"
+//#include "I2CDevice.h"
 #include <unistd.h>
 #include <pthread.h>
-#include "GPS.h"
+//#include "GPS.h"
 
 
 using namespace std;
@@ -40,7 +40,7 @@ int main() {
 	DS1307 DS1307(1,0x68);
 	DS1307.readSensorState();
 	DS1307.updateRTC();
-	GPSDevice gps;
+	//GPSDevice gps;
 	BMP180.readSensorState();
 	BMP180.displayCalibrationData();
 	
@@ -51,12 +51,12 @@ int main() {
 	DS1307.readData();
 	DS1307.displayTime();
 	BMP180.displayResults();
-	gps.readnmea();
+	//gps.readnmea();
 	cout <<dec<<"i="<< i <<endl;
 			usleep(1000000);
 	i++;	}
 	
-	gps.closeGPS();
+	//gps.closeGPS();
 	return 0;
 }
 

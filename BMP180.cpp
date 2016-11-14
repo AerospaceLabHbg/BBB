@@ -130,7 +130,7 @@ up = up >>(8-OSS);
 }
 
 void BMP180::displayResults(){
-cout << dec <<endl;
+//cout << dec <<endl;
 x1=(ut-ac6)*ac5/(pow(2,15));
 x2=mc*pow(2,11)/(x1+md);
 b5=x1+x2;
@@ -151,7 +151,7 @@ x1=(pressure/256)*(pressure/256);
 x1=(x1*3038)/pow(2,16);
 x2=(-7357*pressure)/pow(2,16);
 pressure=pressure+(x1+x2+3791)/16;
-cout << "t:"<< temperature << "   p:" << pressure << endl;		
+cout <<dec<< "t:"<< temperature << "   p:" << pressure << endl;		
 }
 	
 BMP180::~BMP180() {}

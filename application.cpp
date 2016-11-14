@@ -27,6 +27,8 @@
 #include "DS1307.h"
 #include <unistd.h>
 #include <pthread.h>
+#include "GPS.h"
+
 
 using namespace std;
 using namespace exploringBB;
@@ -37,18 +39,28 @@ int main() {
 	DS1307 DS1307(1,0x68);
 	DS1307.readSensorState();
 	DS1307.updateRTC();
+	GPSDevice gps;
 	//BMP180.readSensorState();
 	//BMP180.displayCalibrationData();
 	
 	int i = 0;
-		while(i<10800){
+		while(i<20){
 	//BMP180.readTemperature();
 	//BMP180.readPressure();
 	DS1307.readData();
 	DS1307.displayTime();
+	gps.readnmea();
 	//BMP180.displayResults();
 	cout <<dec<<"i="<< i <<endl;
 			usleep(1000000);
 	i++;	}
+	
+	gps.closeGPS();
 	return 0;
 }
+
+
+
+
+
+
